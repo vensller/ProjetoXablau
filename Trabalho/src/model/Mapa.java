@@ -10,7 +10,6 @@ public class Mapa {
 	private double tamanhoVertical;
 	
 	public Mapa(double tamanhoHorizontal, double tamanhoVertical) {
-		super();
 		this.tamanhoHorizontal = tamanhoHorizontal;
 		this.tamanhoVertical = tamanhoVertical;
 	}

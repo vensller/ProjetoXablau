@@ -2,16 +2,16 @@ package model;
 
 public class Aresta implements Desenhavel, Gravavel{
 	
-	private String nome;
 	private Vertice vertice01;
 	private Vertice vertice02;
 	private double comprimento;
-	private double excenticidade;
+	private double excentricidade;
 
 	@Override
-	public String getStringParaDocumento() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getStringParaDocumento() {		
+		return "a:" + this.vertice01.getNome() + ","
+                            + this.vertice02.getNome() + ","
+                            + this.comprimento + ";\n";
 	}
 
 	@Override
@@ -22,18 +22,9 @@ public class Aresta implements Desenhavel, Gravavel{
 
 	public Aresta(String nome, Vertice vertice01, Vertice vertice02, double comprimento) {
 		super();
-		this.nome = nome;
 		this.vertice01 = vertice01;
 		this.vertice02 = vertice02;
 		this.comprimento = comprimento;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 
 	public Vertice getVertice01() {
@@ -60,18 +51,18 @@ public class Aresta implements Desenhavel, Gravavel{
 		this.comprimento = comprimento;
 	}
 
-	public double getExcenticidade() {
-		return excenticidade;
+	public double getExcentricidade() {
+		return excentricidade;
 	}
 
-	public void setExcenticidade(double excenticidade) {
-		this.excenticidade = excenticidade;
+	public void setExcentricidade(double excentricidade) {
+		this.excentricidade = excentricidade;
 	}
 
 	@Override
 	public String toString() {
-		return "Aresta [nome=" + nome + ", vertice01=" + vertice01 + ", vertice02=" + vertice02 + ", comprimento="
-				+ comprimento + ", excenticidade=" + excenticidade + "]";
+		return "Aresta [vertice01=" + vertice01 + ", vertice02=" + vertice02 + ", comprimento="
+				+ comprimento + ", excenticidade=" + excentricidade + "]";
 	}
 
 }

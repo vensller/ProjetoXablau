@@ -6,9 +6,8 @@ public class Individuo implements Desenhavel, Gravavel{
 	private Vertice localizacao;
 	
 	@Override
-	public String getStringParaDocumento() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getStringParaDocumento() {		
+		return "i:" + this.localizacao.getNome() + ";\n";
 	}
 
 	@Override

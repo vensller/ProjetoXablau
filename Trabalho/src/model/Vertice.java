@@ -2,15 +2,16 @@ package model;
 
 public class Vertice implements Desenhavel, Gravavel {
 	
-	private double nome;
+	private String nome;
 	private double valorX;
 	private double valorY;
 	
 
 	@Override
-	public String getStringParaDocumento() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getStringParaDocumento() {		
+		return "v:" + this.nome + ","
+                            + this.valorX + ","
+                            + this.valorY + ";\n";
 	}
 
 	@Override
@@ -19,7 +20,7 @@ public class Vertice implements Desenhavel, Gravavel {
 		
 	}
 	
-	public Vertice(double nome, double valorX, double valorY) {
+	public Vertice(String nome, double valorX, double valorY) {
 		super();
 		this.nome = nome;
 		this.valorX = valorX;
@@ -31,11 +32,11 @@ public class Vertice implements Desenhavel, Gravavel {
 		return "Vertice [nome=" + nome + ", valorX=" + valorX + ", valorY=" + valorY + "]";
 	}
 
-	public double getNome() {
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(double nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
