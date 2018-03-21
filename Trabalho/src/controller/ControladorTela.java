@@ -1,11 +1,7 @@
 package controller;
 
-import view.Tela;
-
 public class ControladorTela {
 
-	private Tela tela = new Tela();
-	
 	public void salvar() {
 		
 	}
