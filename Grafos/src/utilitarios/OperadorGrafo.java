@@ -19,6 +19,55 @@ public class OperadorGrafo {
 
         return false;
     }
+    
+    public double dijkstraSimples( Vertice origem, Vertice destino ){
+        int intAux;
+        double auxDou;
+        Vertice auxVer;
+        
+        double resultado = 0.0;
+        List< Vertice > listaVertices = mapa.getVertices();
+        List< Aresta > listaAresta = mapa.getArestas();
+        final int NUMERO_VERTICES = listaVertices.size();
+        double distancias[][] = new double[ NUMERO_VERTICES ][ NUMERO_VERTICES ];
+        boolean adjacentes[][] = new boolean[ NUMERO_VERTICES ][ NUMERO_VERTICES ];
+        boolean visitados[] = new boolean[ NUMERO_VERTICES ];
+        FilaPrioritaria fp = new FilaPrioritaria();
+        
+        for( int i = 0; i < NUMERO_VERTICES; i++ ){
+            visitados[ i ] = false;
+            for( int j = 0; j < NUMERO_VERTICES; j++ ){
+                if( i == j ){
+                    distancias[ i ][ j ] = 0.0;
+                }else{
+                    distancias[ i ][ j ] = Double.MAX_VALUE;
+                }
+                adjacentes[ i ][ j ] =
+                    verificarAdjacencia(
+                        listaVertices.get( i ), 
+                        listaVertices.get( j ),
+                        listaAresta
+                    ) == -1;
+            }
+        }
+        
+        fp.adicionar( origem, 0 );
+        
+        while( !fp.estaVazio() ){
+            auxDou = fp.getDistanciaTopo();
+            auxVer = fp.getVerticeTopo();
+            fp.removeTopo();
+            intAux = listaVertices.indexOf( auxVer );
+            
+            if( visitados[ intAux ] == false ){
+                visitados[ intAux ] = true;
+                
+                
+            }
+        }
+        
+        return resultado;
+    }
 
     public Vertice calcularSolucao() {
         long res;
@@ -109,35 +158,45 @@ public class OperadorGrafo {
         return -1;
     }
 
-//	public long retornaMenorCaminhoMediano( double matriz[][] ) {
-//		final int n = matriz.length;
-//		long indiceMenorCaminho = -1;
-//		double valorAtual, valorMenor = Double.MAX_VALUE;
-//		
-//		for( int i = 0; i < n; i++ ) {
-//			valorAtual = calcDesvioPadrao( matriz[ i ] );
-//			if( valorMenor > valorAtual ) {
-//				valorMenor = valorAtual;
-//				indiceMenorCaminho = i;
-//			}
-//		}
-//		
-//		return indiceMenorCaminho;
-//	}
-//	
-//	private double calcDesvioPadrao( double dados[] ) {
-//		double media = 0.0, desvioPadrao = 0.0;
-//		final int tamanho = dados.length;
-//		
-//		for( int i = 0; i < tamanho; i++ ) {
-//			media += dados[ i ] / (double) tamanho;
-//		}
-//		
-//		for( int i = 0; i < tamanho; i++ ) {
-//			desvioPadrao += Math.pow( dados[ i ] - media, 2 ) / ( (double) (tamanho - 1) ) ;
-//		}
-//		desvioPadrao = Math.sqrt(desvioPadrao);
-//		return desvioPadrao;
-//	}
-//	
+    private class FilaPrioritaria {
+        private int tamanho = -1;
+        private List< Vertice > listaVer = new ArrayList<>();
+        private List< Double > listaDou = new ArrayList<>();
+        
+        public void adicionar( Vertice v, double distancia ){
+            int posicao = 0;
+            if( tamanho == 0){
+                posicao = 0;
+            }else{
+                for( int i = 0; i < tamanho; i++ ){
+                    if( distancia < listaDou.get( i ) ){
+                        posicao = i;
+                    }
+                }
+            }
+            
+            listaVer.set( posicao, v );
+            listaDou.set( posicao, distancia );
+            tamanho++;
+        }
+        
+        public boolean estaVazio(){
+            return tamanho == 0;
+        }
+        
+        public Vertice getVerticeTopo( ){
+            return listaVer.get( tamanho );
+        }
+        
+        public double getDistanciaTopo( ){
+            return listaDou.get( tamanho );
+        }
+        
+        public void removeTopo(){
+            listaVer.remove( tamanho );
+            listaDou.remove( tamanho );
+            tamanho--;
+        }
+        
+    }
 }

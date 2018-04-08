@@ -13,6 +13,26 @@ public class Mapa {
 		this.tamanhoHorizontal = tamanhoHorizontal;
 		this.tamanhoVertical = tamanhoVertical;
 	}
+        
+        public List< Vertice > getVertices(){
+            List< Vertice > listaVertices = new ArrayList<>();
+            for( Desenhavel d : listaDesenhaveis ){
+                if ( d instanceof Vertice ){
+                    listaVertices.add( (Vertice) d );
+                }
+            }
+            return listaVertices;
+        }
+        
+        public List<Aresta> getArestas() {
+            List< Aresta> listaArestas = new ArrayList<>();
+            for ( Desenhavel d : listaDesenhaveis ) {
+                if (d instanceof Aresta) {
+                    listaArestas.add( (Aresta) d );
+                }
+            }
+            return listaArestas;
+        }
 
 	public List<Desenhavel> getListaDesenhaveis() {
 		return listaDesenhaveis;
