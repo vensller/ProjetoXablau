@@ -34,16 +34,17 @@ public class Dijkstra {
         
         while(!naoVisitados.isEmpty()){
             int verticeMenorCusto = retornaVerticeMenorCustoNaoVisitado();
-            naoVisitados.remove(verticeMenorCusto);
+            naoVisitados.remove(naoVisitados.indexOf(verticeMenorCusto));
             
-            for (int vizinho : retornaVizinhos(verticeMenorCusto)){
-                Double custoTotal = custos[verticeMenorCusto] + grafo.getCusto(verticeMenorCusto, vizinho);
+            for (int vizinho : retornaVizinhos(verticeMenorCusto)){                
+                double custoTotal = custos[verticeMenorCusto] + grafo.getCusto(verticeMenorCusto, vizinho);
                 if (custoTotal < custos[vizinho]){
                     custos[vizinho] = custoTotal;
                     antecessores[vizinho] = verticeMenorCusto;
                 }
             }
             if (mapa.getVertices().get(verticeMenorCusto) == destino){
+                menorCaminho = new ListaCaminho();
                 criaListaMenorCaminho(menorCaminho, destino, origem);
                 return menorCaminho;
             }
@@ -52,21 +53,20 @@ public class Dijkstra {
         return null;
     }
     
-    private void criaListaMenorCaminho(ListaCaminho caminho, Vertice destino, Vertice origem){
-        caminho = new ListaCaminho();
+    private void criaListaMenorCaminho(ListaCaminho caminho, Vertice destino, Vertice origem){    
         List<Integer> caminhoVert = new ArrayList<>();
         int verticeDestino = mapa.getVertices().indexOf(destino);        
         caminhoVert.add(verticeDestino);        
         adicionaCaminhoRecursivo(caminhoVert, verticeDestino, mapa.getVertices().indexOf(origem));
         for (int i = caminhoVert.size() - 1; i >= 0; i --){
-            No novoNo = new No(mapa.getVertices().get(i), null);
+            No novoNo = new No(mapa.getVertices().get(caminhoVert.get(i)), null);
             caminho.Adicionar(novoNo);
         }
     }
     
     private void adicionaCaminhoRecursivo(List<Integer> caminho, int vertice, int verticeParada){
         int antecessor = antecessores[vertice];
-        if (antecessor > 0){
+        if (antecessor > -1){
             caminho.add(antecessor);
             if (antecessor != verticeParada)
             adicionaCaminhoRecursivo(caminho, antecessor, verticeParada);
@@ -77,7 +77,7 @@ public class Dijkstra {
         int verticeMenorCusto = -1;
         Double menorCusto = Double.MAX_VALUE;
         for (int i : naoVisitados){
-            if (custos[i] < menorCusto){
+            if (custos[i] < menorCusto) {
                 verticeMenorCusto = i;
                 menorCusto = custos[i];
             }
@@ -112,7 +112,7 @@ public class Dijkstra {
         List<Integer> vizinhos = new ArrayList<>();
         for (int i = 0; i < grafo.getVertices()[vertice].length; i++){
             if (grafo.getVertices()[vertice][i] > 0){
-                vizinhos.add(0);
+                vizinhos.add(i);
             }
         }
         return vizinhos;
