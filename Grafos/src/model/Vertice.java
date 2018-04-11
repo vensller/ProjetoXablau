@@ -1,6 +1,6 @@
 package model;
 
-public class Vertice implements Desenhavel, Gravavel {
+public class Vertice implements Desenhavel {
 	
 	private String nome;
 	private double valorX;

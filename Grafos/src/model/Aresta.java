@@ -1,6 +1,6 @@
 package model;
 
-public class Aresta implements Desenhavel, Gravavel{
+public class Aresta implements Desenhavel{
 	
 	private Vertice vertice01;
 	private Vertice vertice02;

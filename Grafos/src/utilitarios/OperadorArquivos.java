@@ -3,14 +3,15 @@ package utilitarios;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Aresta;
+import model.Desenhavel;
 
-import model.Gravavel;
 import model.Individuo;
 import model.Vertice;
 
@@ -22,14 +23,23 @@ public class OperadorArquivos {
         this.nomeArquivo = nomeArquivo;
     }
 
-    public boolean escrever(List<Gravavel> listaGravaveis) {
-
+    public boolean escrever(List<Desenhavel> listaGravaveis, String nomeArquivo) {
+        
+        String str = "";
+        
+        try {
+            FileWriter writer = new FileWriter(nomeArquivo, true);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(OperadorArquivos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return false;
     }
 
-    public List<Gravavel> ler() throws Exception {
+    public List<Desenhavel> ler() throws Exception {
 
-        List<Gravavel> listaGravaveis = new ArrayList<>();
+        List<Desenhavel> listaGravaveis = new ArrayList<>();
         List<Vertice> verticesTemp = new ArrayList<>(); //lista temporária
 
         try {
@@ -39,15 +49,18 @@ public class OperadorArquivos {
             while ((str = reader.readLine()) != null) {
 
                 //primeira condição - verifica se a primeira letra da linha é 'v' ou 'a' ou 'i'
-                if (String.valueOf(str.charAt(0)).equals("v") || String.valueOf(str.charAt(0)).equals("a") || String.valueOf(str.charAt(0)).equals("i")) {
+                if (!str.isEmpty() && (String.valueOf(str.charAt(0)).equals("v") || String.valueOf(str.charAt(0)).equals("a") || String.valueOf(str.charAt(0)).equals("i"))) {
 
+                    str = str.substring(0, str.length() - 1);
+                    
                     switch (String.valueOf(str.charAt(0))) {
 
                         case "v":
 
                             String[] separadorVertice1 = str.split(":");
                             String[] separadorVertice2 = separadorVertice1[1].split(",");
-
+                            
+                            
                             Vertice v = new Vertice(separadorVertice2[0], Double.parseDouble(separadorVertice2[1]), Double.parseDouble(separadorVertice2[2]));
 
                             listaGravaveis.add(v);

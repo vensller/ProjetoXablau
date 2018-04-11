@@ -1,6 +1,6 @@
 package model;
 
-public class Individuo implements Desenhavel, Gravavel{
+public class Individuo implements Desenhavel{
 
 	private String nome;
 	private Vertice localizacao;

@@ -1,6 +1,5 @@
 //Tudo que tiver // será desconsiderado
 //Deve ser separado por ; e pulado para a próxima linha
-//Tudo o que estiver depois do ';' e na mesma linha será desconsiderado
 //Podem estar embaralhados os vértices, arestas e indivíduos
 //O padrão para vértice, aresta e indivíduo deve ser o seguinte:
 
@@ -9,13 +8,22 @@ v:A,1,1;
 v:B,2,3;
 v:C,3,4;
 v:D,5,7;
+v:E,0,3;
+v:F,4,4;
+v:G,3,1;
+v:H,2,9;
 
 //Arestas (1º: Vértice origem, 2º Vértice Destino, 3º Comprimento, 4º nome)
-a:A,B,5m nomeA;
-a:B,C,4, nomeB;
-a:D,A,7, nomeC;
-a:A,C,8, nomeD;
-a:A,D,7, nomeE;
+a:A,C,6, nomeA;
+a:A,F,4, nomeB;
+a:F,E,6, nomeC;
+a:F,D,7, nomeD;
+a:F,B,10, nomeE;
+a:E,C,2, nomeF;
+a:C,B,2, nomeG;
+a:B,G,9, nomeH;
+a:D,H,3, nomeH;
+a:G,H,4, nomeH;
 
 //Indivíduos (1º Vértice de localização, 2º nome)
 i:A, nomeA;

@@ -38,6 +38,7 @@ public class Mapa {
 		return listaDesenhaveis;
 	}
 
+ 
 	public void setListaDesenaveis(List<Desenhavel> listaDesenhaveis) {
 		this.listaDesenhaveis = listaDesenhaveis;
 	}
@@ -49,4 +50,12 @@ public class Mapa {
 	public void removeDesenhavel( Desenhavel d ) {
 		listaDesenhaveis.remove( d );
 	}
+        
+        public void imprimirListaDesenhaveis(){
+            
+            for(Desenhavel d: listaDesenhaveis){
+                System.out.println(d.getStringParaDocumento());
+            }
+            
+        }
 }
