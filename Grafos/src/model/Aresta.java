@@ -2,6 +2,7 @@ package model;
 
 public class Aresta implements Desenhavel{
 	
+        private String nome;
 	private Vertice vertice01;
 	private Vertice vertice02;
 	private double comprimento;
@@ -11,7 +12,8 @@ public class Aresta implements Desenhavel{
 	public String getStringParaDocumento() {		
 		return "a:" + this.vertice01.getNome() + ","
                             + this.vertice02.getNome() + ","
-                            + this.comprimento + ";\n";
+                            + this.comprimento + ","
+                            + this.nome + ";\n";
 	}
 
 	@Override
@@ -20,7 +22,7 @@ public class Aresta implements Desenhavel{
 		
 	}
 
-	public Aresta(String nome, Vertice vertice01, Vertice vertice02, double comprimento) {
+	public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, String nome) {
 		super();
 		this.vertice01 = vertice01;
 		this.vertice02 = vertice02;
