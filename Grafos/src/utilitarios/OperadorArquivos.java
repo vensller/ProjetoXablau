@@ -23,17 +23,25 @@ public class OperadorArquivos {
         this.nomeArquivo = nomeArquivo;
     }
 
-    public boolean escrever(List<Desenhavel> listaGravaveis, String nomeArquivo) {
-        
-        String str = "";
-        
+    public boolean escrever(List<Desenhavel> listaDesenhaveis, String nomeArquivo) {
+
+        /* 
+        * v:A,1,1;
+        * a:A,B,5, nomeA;
+        * i:A, nomeA;
+        */
+
         try {
             FileWriter writer = new FileWriter(nomeArquivo, true);
-            
+            for (Desenhavel d : listaDesenhaveis) {
+                writer.write(d.getStringParaDocumento());
+            }
+            writer.close();
+            return true;
         } catch (IOException ex) {
             Logger.getLogger(OperadorArquivos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return false;
     }
 
@@ -52,15 +60,14 @@ public class OperadorArquivos {
                 if (!str.isEmpty() && (String.valueOf(str.charAt(0)).equals("v") || String.valueOf(str.charAt(0)).equals("a") || String.valueOf(str.charAt(0)).equals("i"))) {
 
                     str = str.substring(0, str.length() - 1);
-                    
+
                     switch (String.valueOf(str.charAt(0))) {
 
                         case "v":
 
                             String[] separadorVertice1 = str.split(":");
                             String[] separadorVertice2 = separadorVertice1[1].split(",");
-                            
-                            
+
                             Vertice v = new Vertice(separadorVertice2[0], Double.parseDouble(separadorVertice2[1]), Double.parseDouble(separadorVertice2[2]));
 
                             listaGravaveis.add(v);
@@ -73,7 +80,7 @@ public class OperadorArquivos {
                             String[] separadorAresta1 = str.split(":");
                             String[] separadorAresta2 = separadorAresta1[1].split(",");
 
-                            //aresta(nome, vertice01, vetice02, comprimento)
+                            //aresta(vertice01, vetice02, comprimento, nome)
                             Vertice v1 = null;
                             Vertice v2 = null;
 
@@ -89,8 +96,13 @@ public class OperadorArquivos {
                             if ((v1 == null) || (v2 == null)) {
                                 throw new Exception("Um ou mais vertices não foram encontrado! (Aresta)");
                             } else {
-                                Aresta a = new Aresta("nome?", v1, v2, Double.parseDouble(separadorAresta2[2]));
-                                listaGravaveis.add(a);
+                                //verificação de valores negativos
+                                if (Double.parseDouble(separadorAresta2[2]) < 0) {
+                                    throw new Exception("Valores negativos de comprimento não são permitidos!");
+                                } else {
+                                    Aresta a = new Aresta(v1, v2, Double.parseDouble(separadorAresta2[2]), separadorAresta2[3].trim());
+                                    listaGravaveis.add(a);
+                                }
                             }
 
                             break;

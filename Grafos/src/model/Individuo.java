@@ -7,7 +7,7 @@ public class Individuo implements Desenhavel{
 	
 	@Override
 	public String getStringParaDocumento() {		
-		return "i:" + this.localizacao.getNome() + ";\n";
+		return "i:" + this.localizacao.getNome() + nome +";\n";
 	}
 
 	@Override
