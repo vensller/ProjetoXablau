@@ -13,7 +13,7 @@ v:D,5,7;
 //Arestas (1º: Vértice origem, 2º Vértice Destino, 3º Comprimento, 4º nome)
 a:A,B,5, nomeA;
 a:B,C,4, nomeB;
-a:D,A,7, nomeC;
+a:D,A,7, nomeC; 
 a:A,C,8, nomeD;
 a:A,D,7, nomeE;
 

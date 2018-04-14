@@ -59,7 +59,8 @@ public class OperadorArquivos {
                 //primeira condição - verifica se a primeira letra da linha é 'v' ou 'a' ou 'i'
                 if (!str.isEmpty() && (String.valueOf(str.charAt(0)).equals("v") || String.valueOf(str.charAt(0)).equals("a") || String.valueOf(str.charAt(0)).equals("i"))) {
 
-                    str = str.substring(0, str.length() - 1);
+                    //Na linha abaixo, somente Deus e eu sabíamos o que ela fazia. Agora só Deus sabe...
+                    str = str.substring(0, str.split(";")[0].length() - 1);
 
                     switch (String.valueOf(str.charAt(0))) {
 
