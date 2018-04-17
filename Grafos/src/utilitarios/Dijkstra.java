@@ -92,20 +92,29 @@ public class Dijkstra {
             if (mapa.getVertices().get(i).equals(origem)) custos[i] = 0.0;
             else custos[i] = Double.MAX_VALUE;
             
-            for (int j = 0; j < mapa.getVertices().size(); j++){                
-                grafo.adicionaVerticesGrafo(i, j, retornaCustoVertice(mapa.getVertices().get(i), mapa.getVertices().get(j)));                                
+            for (int j = 0; j < mapa.getVertices().size(); j++){
+                Aresta aresta = retornaAresta(mapa.getVertices().get(i), mapa.getVertices().get(j));
+                Double comprimento = -1.0;
+                Boolean bidirecional = true;
+                
+                if (aresta != null){
+                    comprimento = aresta.getComprimento();
+                    bidirecional = aresta.isBidirecional();
+                }
+                
+                grafo.adicionaVerticesGrafo(i, j, comprimento, bidirecional);                                
             }
         }
-    }
+    }    
     
-    private Double retornaCustoVertice(Vertice vertice1, Vertice vertice2){
+    private Aresta retornaAresta(Vertice vertice1, Vertice vertice2){
         for (Aresta aresta : mapa.getArestas()){
             if ((aresta.getVertice01().equals(vertice1) && aresta.getVertice02().equals(vertice2))
              || (aresta.getVertice02().equals(vertice1) && aresta.getVertice01().equals(vertice2))){
-                return aresta.getComprimento();
+                return aresta;
             }
         }
-        return -1.0;
+        return null;
     }
     
     private List<Integer> retornaVizinhos(int vertice){

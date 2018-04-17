@@ -101,7 +101,7 @@ public class OperadorArquivos {
                                 if (Double.parseDouble(separadorAresta2[2]) < 0) {
                                     throw new Exception("Valores negativos de comprimento não são permitidos!");
                                 } else {
-                                    Aresta a = new Aresta(v1, v2, Double.parseDouble(separadorAresta2[2]), separadorAresta2[3].trim());
+                                    Aresta a = new Aresta(v1, v2, Double.parseDouble(separadorAresta2[2]), true, separadorAresta2[3].trim());
                                     listaGravaveis.add(a);
                                 }
                             }

@@ -11,9 +11,9 @@ public class Grafo {
         vertices = new Double[numVertices][numVertices];
     }
     
-    public void adicionaVerticesGrafo(int vertice1, int vertice2, Double peso){
+    public void adicionaVerticesGrafo(int vertice1, int vertice2, Double peso, boolean bidirecional){
         vertices[vertice1][vertice2] = peso;
-        vertices[vertice2][vertice1] = peso;
+        if (bidirecional) vertices[vertice2][vertice1] = peso;
     }
     
     public void removerVerticesGrafo(int vertice1, int vertice2){
