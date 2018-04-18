@@ -24,8 +24,7 @@ public class Aresta implements Desenhavel{
 
     }
 
-    public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {
-            super();
+    public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {            
             this.vertice01 = vertice01;
             this.vertice02 = vertice02;
             this.comprimento = comprimento;

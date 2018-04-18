@@ -16,8 +16,7 @@ public class Individuo implements Desenhavel {
 
     }
 
-    public Individuo(Vertice localizacao, String nome) {
-        super();
+    public Individuo(Vertice localizacao, String nome) {        
         this.nome = nome;
         this.localizacao = localizacao;
     }

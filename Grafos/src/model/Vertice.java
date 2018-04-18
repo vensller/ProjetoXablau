@@ -20,8 +20,7 @@ public class Vertice implements Desenhavel {
 		
 	}
 	
-	public Vertice(String nome, double valorX, double valorY) {
-		super();
+	public Vertice(String nome, double valorX, double valorY) {		
 		this.nome = nome;
 		this.valorX = valorX;
 		this.valorY = valorY;
