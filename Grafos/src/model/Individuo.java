@@ -1,48 +1,46 @@
 package model;
 
-public class Individuo implements Desenhavel{
+public class Individuo implements Desenhavel {
 
-	private String nome;
-	private Vertice localizacao;
-	
-	@Override
-	public String getStringParaDocumento() {		
-		return "i:" + this.localizacao.getNome() + nome +";\n";
-	}
+    private String nome;
+    private Vertice localizacao;
 
-	@Override
-	public void desenhar() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public String getStringParaDocumento() {
+        return "i:" + this.localizacao.getNome() + ", " + nome + ";\n";
+    }
 
-	public Individuo(String nome, Vertice localizacao) {
-		super();
-		this.nome = nome;
-		this.localizacao = localizacao;
-	}
+    @Override
+    public void desenhar() {
+        // TODO Auto-generated method stub
 
-	@Override
-	public String toString() {
-		return "Individuo [nome=" + nome + ", localizacao=" + localizacao + "]";
-	}
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Individuo(Vertice localizacao, String nome) {
+        super();
+        this.nome = nome;
+        this.localizacao = localizacao;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @Override
+    public String toString() {
+        return "Individuo [nome=" + nome + ", localizacao=" + localizacao + "]";
+    }
 
-	public Vertice getLocalizacao() {
-		return localizacao;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setLocalizacao(Vertice localizacao) {
-		this.localizacao = localizacao;
-	}
-	
-	
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Vertice getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(Vertice localizacao) {
+        this.localizacao = localizacao;
+    }
 
 }

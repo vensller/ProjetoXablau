@@ -29,8 +29,7 @@ public class OperadorArquivos {
         * v:A,1,1;
         * a:A,B,5, nomeA;
         * i:A, nomeA;
-        */
-
+         */
         try {
             FileWriter writer = new FileWriter(nomeArquivo, true);
             for (Desenhavel d : listaDesenhaveis) {
@@ -60,7 +59,7 @@ public class OperadorArquivos {
                 if (!str.isEmpty() && (String.valueOf(str.charAt(0)).equals("v") || String.valueOf(str.charAt(0)).equals("a") || String.valueOf(str.charAt(0)).equals("i"))) {
 
                     //Na linha abaixo, somente Deus e eu sabíamos o que ela fazia. Agora só Deus sabe...
-                    str = str.substring(0, str.split(";")[0].length() - 1);
+                    str = str.substring(0, str.split(";")[0].length());
 
                     switch (String.valueOf(str.charAt(0))) {
 
@@ -115,7 +114,7 @@ public class OperadorArquivos {
                             Vertice vIndividuo = null;
 
                             for (Vertice verticeI : verticesTemp) {
-                                if (verticeI.getNome().equals(separadorIndividuo2[1])) {
+                                if (verticeI.getNome().equals(separadorIndividuo2[0])) {
                                     vIndividuo = verticeI;
                                 }
                             }
@@ -123,7 +122,7 @@ public class OperadorArquivos {
                             if (vIndividuo == null) {
                                 throw new Exception("Um ou mais vertices não foram encontrado! (Individuo)");
                             } else {
-                                Individuo i = new Individuo(separadorIndividuo2[0], vIndividuo);
+                                Individuo i = new Individuo(vIndividuo, separadorIndividuo2[1]);
                                 listaGravaveis.add(i);
                             }
 
