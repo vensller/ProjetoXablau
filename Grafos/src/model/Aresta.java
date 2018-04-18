@@ -14,6 +14,7 @@ public class Aresta implements Desenhavel{
             return "a:" + this.vertice01.getNome() + ","
                         + this.vertice02.getNome() + ","
                         + this.comprimento + ","
+                        + this.bidirecional + ","
                         + this.nome + ";\n";
     }
 
@@ -29,6 +30,7 @@ public class Aresta implements Desenhavel{
             this.vertice02 = vertice02;
             this.comprimento = comprimento;
             this.bidirecional = bidirecional;
+            this.nome = nome;
     }
 
     public Vertice getVertice01() {

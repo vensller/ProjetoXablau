@@ -13,17 +13,17 @@ v:F,4,4;
 v:G,3,1;
 v:H,2,9;
 
-//Arestas (1º: Vértice origem, 2º Vértice Destino, 3º Comprimento, 4º nome)
-a:A,C,6, nomeA;
-a:A,F,4, nomeB;
-a:F,E,6, nomeC;
-a:F,D,7, nomeD;
-a:F,B,10, nomeE;
-a:E,C,2, nomeF;
-a:C,B,2, nomeG;
-a:B,G,9, nomeH;
-a:D,H,3, nomeH;
-a:G,H,4, nomeH;
+//Arestas (1º: Vértice origem, 2º Vértice Destino, 3º Comprimento, 4º bidirecional, 5° nome)
+a:A,C,6,true, nomeA;
+a:A,F,4,true, nomeB;
+a:F,E,6,true, nomeC;
+a:F,D,7,true, nomeD;
+a:F,B,10,true, nomeE;
+a:E,C,2,true, nomeF;
+a:C,B,2,true, nomeG;
+a:B,G,9,true, nomeH;
+a:D,H,3,true, nomeI;
+a:G,H,4,true, nomeJ;
 
 //Indivíduos (1º Vértice de localização, 2º nome)
 i:A, nomeA;

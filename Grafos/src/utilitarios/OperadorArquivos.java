@@ -100,7 +100,11 @@ public class OperadorArquivos {
                                 if (Double.parseDouble(separadorAresta2[2]) < 0) {
                                     throw new Exception("Valores negativos de comprimento não são permitidos!");
                                 } else {
-                                    Aresta a = new Aresta(v1, v2, Double.parseDouble(separadorAresta2[2]), true, separadorAresta2[3].trim());
+                                    boolean bidirecional = false;
+                                    if(separadorAresta2[3].equalsIgnoreCase("true"))
+                                        bidirecional = true;
+                                    //A linha abaixo precisa ser revisada para adicionar o bidirecional que ainda não contém no .txt
+                                    Aresta a = new Aresta(v1, v2, Double.parseDouble(separadorAresta2[2]), bidirecional, separadorAresta2[4]);
                                     listaGravaveis.add(a);
                                 }
                             }
