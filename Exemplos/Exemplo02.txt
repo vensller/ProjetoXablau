@@ -1,0 +1,19 @@
+v: SFO, 2, 0;
+v: LAX, 3, 1;
+v: DFW, 4, 5;
+v: ORD, 0, 7;
+v: MIA, 6, 8;
+v: JFK, 1, 8;
+v: BOS, 7, 0;
+
+a: SFO, LAX, 337, SFO_LAX;
+a: SFO, BOS, 2704, SFO_BOS;
+a: SFO, ORD, 1846, SFO_ORD;
+a: LAX, DFW, 1235, LAX_DFW;
+a: LAX, MIA, 2342, LAX_MIA;
+a: DFW, MIA, 1121, DFW_MIA;
+a: DFW, ORD, 802, DFW_ORD;
+a: ORD, JFK, 740, ORD_JFK;
+a: JFK, MIA, 1090, JFK_MIA;
+a: JFK, BOS, 187, JFK_BOS;
+a: BOS, MIA, 1258, BOS, MIA;
