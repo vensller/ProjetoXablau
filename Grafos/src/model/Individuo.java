@@ -4,6 +4,7 @@ public class Individuo implements Desenhavel {
 
     private String nome;
     private Vertice localizacao;
+    private ListaCaminho caminho;
 
     @Override
     public String getStringParaDocumento() {
@@ -19,6 +20,7 @@ public class Individuo implements Desenhavel {
     public Individuo(Vertice localizacao, String nome) {        
         this.nome = nome;
         this.localizacao = localizacao;
+        this.caminho = null;
     }
 
     @Override
@@ -41,5 +43,13 @@ public class Individuo implements Desenhavel {
     public void setLocalizacao(Vertice localizacao) {
         this.localizacao = localizacao;
     }
+
+    public ListaCaminho getCaminho() {
+        return caminho;
+    }
+
+    public void setCaminho(ListaCaminho caminho) {
+        this.caminho = caminho;
+    }    
 
 }

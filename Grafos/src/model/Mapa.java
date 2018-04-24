@@ -33,6 +33,16 @@ public class Mapa {
             }
             return listaArestas;
         }
+        
+        public List<Individuo> getIndividuos(){
+            List<Individuo> listaIndividuos = new ArrayList<>();
+            for (Desenhavel d : listaDesenhaveis){
+                if (d instanceof Individuo){
+                    listaIndividuos.add((Individuo)d);
+                }                
+            }
+            return listaIndividuos;
+        }
 
 	public List<Desenhavel> getListaDesenhaveis() {
 		return listaDesenhaveis;

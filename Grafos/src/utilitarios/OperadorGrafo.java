@@ -1,9 +1,11 @@
 package utilitarios;
 
+import model.ListaCaminho;
 import java.util.ArrayList;
 import java.util.List;
 import model.Aresta;
 import model.Desenhavel;
+import model.Individuo;
 import model.Mapa;
 import model.Vertice;
 
@@ -102,6 +104,16 @@ public class OperadorGrafo {
             }
         }
         return -1;
+    }
+    
+    public void definirCaminhosIndividuosDestino(Vertice destino){
+        List<Individuo> individuos = mapa.getIndividuos();        
+        if (!individuos.isEmpty()){
+            Dijkstra dijkstra = new Dijkstra(mapa);
+            for (Individuo i : individuos){
+                i.setCaminho(dijkstra.retornaMenorCaminho(i.getLocalizacao(), destino));
+            }
+        }
     }
     
 }

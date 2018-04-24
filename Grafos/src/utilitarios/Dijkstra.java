@@ -1,5 +1,6 @@
 package utilitarios;
 
+import model.ListaCaminho;
 import java.util.ArrayList;
 import java.util.List;
 import model.Aresta;
