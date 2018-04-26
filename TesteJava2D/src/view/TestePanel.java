@@ -2,16 +2,20 @@ package view;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JPanel;
 
-public class TestePanel extends javax.swing.JPanel {
+public class TestePanel extends JPanel {
+    
+    int contador = 1;
 
     public TestePanel() {
         initComponents();
         setBackground( Color.WHITE );
     }
     
-    private void desenharAlgo( Graphics g ){
-        g.drawLine( 10, 10, 20, 20);
+    public void desenharAlgo( Graphics g ){
+        g.drawLine( contador*10, contador*10, contador*20, contador*20);
+        contador++;
     }
     
     @Override

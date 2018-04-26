@@ -12,7 +12,7 @@ public class Individuo implements Desenhavel {
     }
 
     @Override
-    public void desenhar() {
+    public void desenhar(java.awt.Graphics g) {
         // TODO Auto-generated method stub
 
     }

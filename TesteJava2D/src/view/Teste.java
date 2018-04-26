@@ -1,21 +1,53 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Teste extends javax.swing.JFrame {
+public class Teste extends JFrame {
+    
+    JButton btn= new JButton();
 
     public Teste() {
         initComponents();
         this.setLocationRelativeTo( null );
-        this.setPreferredSize( new Dimension(600, 600) );
+        this.setPreferredSize( new Dimension(600, 600));
         
-        final TestePanel desenhar = new TestePanel();
-        final JPanel painel = new JPanel();
-        painel.add(desenhar);
-        painel.setPreferredSize( new Dimension(400, 300) );
+        TestePanel desenhar = new TestePanel();
+        desenhar.setSize(new Dimension(400, 300));
+        desenhar.setBackground(new java.awt.Color(255, 255, 255));
         
-        this.add( painel );
+//        JLabel label = new JLabel();
+//        label.setPreferredSize(new Dimension(200, 80));
+//        label.setText("Agora foi...");
+//        
+        btn = new JButton();
+        btn.setSize(new Dimension(100, 40));
+        btn.setText("botao");
+//        
+//        desenhar.add(label);
+        desenhar.add(btn);
+        
+        
+//        JPanel painel = new JPanel();
+////        painel.add(desenhar);
+//        painel.setPreferredSize( new Dimension(400, 300) );
+        
+        this.add(desenhar);
+        
+          btn.addActionListener(
+            new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    repaint();
+                }
+            }
+        );
     }
 
     @SuppressWarnings("unchecked")
