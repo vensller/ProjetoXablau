@@ -110,8 +110,8 @@ public class Dijkstra {
     
     private Aresta retornaAresta(Vertice vertice1, Vertice vertice2){
         for (Aresta aresta : mapa.getArestas()){
-            if ((aresta.getVertice01().equals(vertice1) && aresta.getVertice02().equals(vertice2))
-             || (aresta.getVertice02().equals(vertice1) && aresta.getVertice01().equals(vertice2))){
+            if ((aresta.getOrigem().equals(vertice1) && aresta.getDestino().equals(vertice2))
+             || (aresta.getDestino().equals(vertice1) && aresta.getOrigem().equals(vertice2))){
                 return aresta;
             }
         }

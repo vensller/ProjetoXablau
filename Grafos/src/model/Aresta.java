@@ -7,16 +7,16 @@ import java.awt.geom.Point2D;
 public class Aresta implements Desenhavel {
 
     private String nome;
-    private Vertice vertice01;
-    private Vertice vertice02;
+    private Vertice origem;
+    private Vertice destino;
     private double comprimento;
     private double excentricidade;
     private boolean bidirecional;
 
     @Override
     public String getStringParaDocumento() {
-        return "a:" + this.vertice01.getNome() + ","
-                + this.vertice02.getNome() + ","
+        return "a:" + this.origem.getNome() + ","
+                + this.destino.getNome() + ","
                 + this.comprimento + ","
                 + this.bidirecional + ","
                 + this.nome + ";\n";
@@ -26,8 +26,8 @@ public class Aresta implements Desenhavel {
     public void desenhar(java.awt.Graphics g) {
         Graphics2D G2D = (Graphics2D) g;
 //        G2D.setStroke(new BasicStroke(3.0f));
-        Point2D P2D = new Point2D.Double(vertice01.getValorX(), vertice01.getValorY());
-        Point2D P2D2 = new Point2D.Double(vertice02.getValorX(), vertice02.getValorY());
+        Point2D P2D = new Point2D.Double(origem.getValorX(), origem.getValorY());
+        Point2D P2D2 = new Point2D.Double(destino.getValorX(), destino.getValorY());
         Line2D L2D = new Line2D.Float(P2D, P2D2);
         G2D.draw(L2D);
 //        g.drawLine(vertice01.getValorX(), vertice01.getValorY(), vertice02.getValorX(), vertice02.getValorY());
@@ -35,27 +35,27 @@ public class Aresta implements Desenhavel {
     }
 
     public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {
-        this.vertice01 = vertice01;
-        this.vertice02 = vertice02;
+        this.origem = vertice01;
+        this.destino = vertice02;
         this.comprimento = comprimento;
         this.bidirecional = bidirecional;
         this.nome = nome;
     }
 
-    public Vertice getVertice01() {
-        return vertice01;
+    public Vertice getOrigem() {
+        return origem;
     }
 
-    public void setVertice01(Vertice vertice01) {
-        this.vertice01 = vertice01;
+    public void setOrigem(Vertice origem) {
+        this.origem = origem;
     }
 
-    public Vertice getVertice02() {
-        return vertice02;
+    public Vertice getDestino() {
+        return destino;
     }
 
-    public void setVertice02(Vertice vertice02) {
-        this.vertice02 = vertice02;
+    public void setDestino(Vertice destino) {
+        this.destino = destino;
     }
 
     public double getComprimento() {
@@ -84,7 +84,7 @@ public class Aresta implements Desenhavel {
 
     @Override
     public String toString() {
-        return "Aresta [vertice01=" + vertice01 + ", vertice02=" + vertice02 + ", comprimento="
+        return "Aresta [origem=" + origem + ", destino=" + destino + ", comprimento="
                 + comprimento + ", excenticidade=" + excentricidade + "]";
     }
 

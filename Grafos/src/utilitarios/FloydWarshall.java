@@ -1,22 +1,24 @@
 package utilitarios;
 
-import model.ListaCaminho;
 import java.util.ArrayList;
 import java.util.List;
 import model.Aresta;
 import model.Desenhavel;
-import model.Individuo;
 import model.Mapa;
 import model.Vertice;
 
-public class OperadorGrafo {
-
+/**
+ *
+ * @author Ivens
+ */
+public class FloydWarshall {
+    
     private Mapa mapa;
-
-    public OperadorGrafo(Mapa m) {
-        this.mapa = m;
+    
+    public FloydWarshall(Mapa mapa){
+        this.mapa = mapa;
     }
-
+    
     public Vertice calcularSolucao() {
         long res;
         double aux;
@@ -98,22 +100,11 @@ public class OperadorGrafo {
 
     public double verificarAdjacencia( Vertice v1, Vertice v2, List< Aresta > listaArestas ) {
         for( Aresta a : listaArestas ){
-            if( ( a.getVertice01().equals( v1 ) && a.getVertice02().equals( v2 ) )
-                || ( a.getVertice02().equals( v1 ) && a.getVertice01().equals( v2 ) ) ){
+            if( ( a.getOrigem().equals( v1 ) && a.getDestino().equals( v2 ) )
+                || ( a.getDestino().equals( v1 ) && a.getOrigem().equals( v2 ) ) ){
                 return a.getComprimento();
             }
         }
         return -1;
     }
-    
-    public void definirCaminhosIndividuosDestino(Vertice destino){
-        List<Individuo> individuos = mapa.getIndividuos();        
-        if (!individuos.isEmpty()){
-            Dijkstra dijkstra = new Dijkstra(mapa);
-            for (Individuo i : individuos){
-                i.setCaminho(dijkstra.retornaMenorCaminho(i.getLocalizacao(), destino));
-            }
-        }
-    }
-    
 }

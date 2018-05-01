@@ -2,11 +2,10 @@ package Principal;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.Aresta;
 import model.Mapa;
 import model.Vertice;
 import utilitarios.Dijkstra;
-import utilitarios.OperadorGrafo;
+import controller.OperadorGrafo;
 import view.TelaInicial;
 
 /**
@@ -68,12 +67,11 @@ public class Principal {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
         Dijkstra dijkstra = new Dijkstra(m);
-        m.imprimirListaDesenhaveis();
-        
-        String caminho = dijkstra.retornaMenorCaminho(m.getVertices().get(7), m.getVertices().get(2)).listarCaminho();
+        m.imprimirListaDesenhaveis();            
 
         OperadorGrafo og = new OperadorGrafo(m);
-        Vertice v = og.calcularSolucao();
+        Vertice v = og.definirPontoEncontro();
+        og.definirCaminhosIndividuosDestino(v);
         System.out.println("solução: " + v.toString());
     }
 }
