@@ -5,28 +5,34 @@
  */
 package view;
 
+import controller.ControladorTelaPrincipal;
 import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JButton;
+import controller.ObservadorTelaPrincipal;
 
 /**
  *
  * @author Ivens
  */
-public class TelaInicial extends javax.swing.JFrame {
+public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPrincipal{
 
-    /**
-     * Creates new form TelaInicial
-     */
+    private ControladorTelaPrincipal controle;
+    
     public TelaInicial() {
+        
+        controle = new ControladorTelaPrincipal();
+        controle.addObservador(this);
+        
         initComponents();
-        TelaMapa tela = new TelaMapa();
-        tela.setVisible(true);
-        tela.setBackground(Color.yellow);
-        tela.setSize(600, 400);
+        this.setLocationRelativeTo(null);
+        this.setTitle("Projeto Xablau!");
         
-        
-        DesktopPane.add(tela);
+//        TelaMapa tela = new TelaMapa();
+//        tela.setVisible(true);
+//        tela.setBackground(Color.yellow);
+//        tela.setSize(600, 400);
+//        
+//        
+//        DesktopPane.add(tela);
         
     }
 
@@ -40,6 +46,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         DesktopPane = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        btnNovoMapa = new javax.swing.JMenuItem();
+        btnSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,12 +57,29 @@ public class TelaInicial extends javax.swing.JFrame {
         DesktopPane.setLayout(DesktopPaneLayout);
         DesktopPaneLayout.setHorizontalGroup(
             DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 559, Short.MAX_VALUE)
+            .addGap(0, 649, Short.MAX_VALUE)
         );
         DesktopPaneLayout.setVerticalGroup(
             DesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+            .addGap(0, 459, Short.MAX_VALUE)
         );
+
+        jMenu1.setText("Arquivo");
+
+        btnNovoMapa.setText("Novo mapa");
+        btnNovoMapa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNovoMapaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnNovoMapa);
+
+        btnSair.setText("Sair");
+        jMenu1.add(btnSair);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,14 +89,31 @@ public class TelaInicial extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(DesktopPane)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(DesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnNovoMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoMapaActionPerformed
+        
+        controle.novoMapa();
+        
+    }//GEN-LAST:event_btnNovoMapaActionPerformed
+
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane DesktopPane;
+    private javax.swing.JMenuItem btnNovoMapa;
+    private javax.swing.JMenuItem btnSair;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void addTelaSobreDesktopPane() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
