@@ -18,7 +18,7 @@ public class Principal {
         TelaInicial telaInicial = new TelaInicial();
         telaInicial.setVisible(true);
 
-        teste();
+//        teste();
     }
 
     private static void teste() {

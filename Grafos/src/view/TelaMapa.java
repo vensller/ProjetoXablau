@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  * @author Ivens
  */
 public class TelaMapa extends javax.swing.JInternalFrame {
-    
+
     /**
      * Creates new form TelaMapa
      */
@@ -21,7 +21,7 @@ public class TelaMapa extends javax.swing.JInternalFrame {
         initComponents();
         setVisible(true);
         setBackground(new java.awt.Color(255, 0, 0));;
-        
+
         MeuPainel meu = new MeuPainel();
         meu.setSize(400, 200);
         this.add(meu);
@@ -31,8 +31,7 @@ public class TelaMapa extends javax.swing.JInternalFrame {
 //        btn.setSize(100,40);
 //        
 //        this.add(btn);
-            
-repaint();
+        repaint();
 
     }
 
@@ -73,11 +72,11 @@ repaint();
     private class MeuPainel extends JPanel {
 
         public MeuPainel() {
-            
+
         }
-        
+
         @Override
-        public void paintComponent( Graphics g ){
+        public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawLine(10, 15, 100, 120);
         }

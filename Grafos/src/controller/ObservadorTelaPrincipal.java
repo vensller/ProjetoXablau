@@ -5,12 +5,14 @@
  */
 package controller;
 
+import javax.swing.JInternalFrame;
+
 /**
  *
  * @author douglas
  */
 public interface ObservadorTelaPrincipal {
     
-    void addTelaSobreDesktopPane();
+    void addTelaSobreDesktopPane(JInternalFrame jif);
     
 }

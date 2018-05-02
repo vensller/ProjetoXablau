@@ -7,6 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -24,6 +25,10 @@ public class ControladorTelaSobre implements ObservadoTelaSobre{
     @Override
     public void removeObservador(ObservadorTelaSobre obs) {
         observadores.add(obs);
+    }
+    
+    public JInternalFrame getInternalFrame(){
+        return observadores.get(0).getInternalFrame();
     }
     
 }

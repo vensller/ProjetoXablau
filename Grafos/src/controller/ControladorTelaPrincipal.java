@@ -15,6 +15,7 @@ import java.util.List;
 public class ControladorTelaPrincipal implements ObservadoTelaPrincipal{
 
     private List<ObservadorTelaPrincipal> observadores = new ArrayList<>();
+    private ControladorTelaSobre controladorTelaSobre;
     
     @Override
     public void addObservador(ObservadorTelaPrincipal obs) {
@@ -29,7 +30,7 @@ public class ControladorTelaPrincipal implements ObservadoTelaPrincipal{
     //contrução de um novo mapa
     public void novoMapa() {
         
-        System.out.println("Novo mapa iniciado");
+        
         
     }
     

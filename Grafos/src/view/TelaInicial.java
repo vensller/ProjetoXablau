@@ -8,6 +8,7 @@ package view;
 import controller.ControladorTelaPrincipal;
 import java.awt.Color;
 import controller.ObservadorTelaPrincipal;
+import javax.swing.JInternalFrame;
 
 /**
  *
@@ -26,13 +27,13 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
         this.setLocationRelativeTo(null);
         this.setTitle("Projeto Xablau!");
         
-//        TelaMapa tela = new TelaMapa();
-//        tela.setVisible(true);
-//        tela.setBackground(Color.yellow);
-//        tela.setSize(600, 400);
-//        
-//        
-//        DesktopPane.add(tela);
+        TelaMapa tela = new TelaMapa();
+        tela.setVisible(true);
+        tela.setBackground(Color.yellow);
+        tela.setSize(600, 400);
+        
+        
+        DesktopPane.add(tela);
         
     }
 
@@ -112,8 +113,10 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 
+
+
     @Override
-    public void addTelaSobreDesktopPane() {
+    public void addTelaSobreDesktopPane(JInternalFrame jif) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
