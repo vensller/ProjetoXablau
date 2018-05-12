@@ -1,8 +1,8 @@
 package model;
 
 import java.awt.Graphics2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
+import java.awt.geom.QuadCurve2D;
+import utilitarios.CalculosCurva;
 
 public class Aresta implements Desenhavel {
 
@@ -24,14 +24,15 @@ public class Aresta implements Desenhavel {
 
     @Override
     public void desenhar(java.awt.Graphics g) {
-        Graphics2D G2D = (Graphics2D) g;
-//        G2D.setStroke(new BasicStroke(3.0f));
-        Point2D P2D = new Point2D.Double(origem.getValorX(), origem.getValorY());
-        Point2D P2D2 = new Point2D.Double(destino.getValorX(), destino.getValorY());
-        Line2D L2D = new Line2D.Float(P2D, P2D2);
-        G2D.draw(L2D);
-//        g.drawLine(vertice01.getValorX(), vertice01.getValorY(), vertice02.getValorX(), vertice02.getValorY());
-
+        CalculosCurva cc = new CalculosCurva( this );
+        Graphics2D g2 = (Graphics2D) g;
+        QuadCurve2D q = new QuadCurve2D.Float();
+        q.setCurve(
+            origem.getValorX(), origem.getValorY(),
+            cc.getValorXmaximo(), cc.getValorYMaximo(),
+            destino.getValorX(), destino.getValorY()
+        );
+        g2.draw(q);
     }
 
     public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {
