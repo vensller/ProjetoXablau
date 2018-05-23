@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Graphics2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.QuadCurve2D;
 import utilitarios.CalculosCurva;
 
@@ -33,6 +34,8 @@ public class Aresta implements Desenhavel {
             destino.getValorX(), destino.getValorY()
         );
         g2.draw(q);
+        origem.desenhar(g.create());
+        destino.desenhar(g.create());
     }
 
     public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {

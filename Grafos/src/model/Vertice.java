@@ -1,5 +1,14 @@
 package model;
 
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+
 public class Vertice implements Desenhavel {
 	
 	private String nome;
@@ -16,8 +25,11 @@ public class Vertice implements Desenhavel {
 
 	@Override
 	public void desenhar(java.awt.Graphics g) {
-		// TODO Auto-generated method stub
-		
+            final int raio = 10;
+            Graphics2D g2 = (Graphics2D) g;
+            Ellipse2D.Double circle =  new Ellipse2D.Double(valorX-raio/2, valorY-raio/2, raio, raio);
+            g2.setColor(Color.green);
+            g2.fill(circle);
 	}
 	
 	public Vertice(String nome, double valorX, double valorY) {		

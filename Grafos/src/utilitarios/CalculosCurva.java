@@ -1,6 +1,9 @@
 package utilitarios;
 
+import java.util.ArrayList;
+import java.util.List;
 import model.Aresta;
+import model.Vertice;
 
 public class CalculosCurva {
     
@@ -66,8 +69,6 @@ public class CalculosCurva {
     }
     
     private void calcularPontoMaximo(){
-        double coordenadas[] = new double[ 2 ];
-        
         double x = xO;
         double y = Math.sqrt( b*b*(1- (xO*xO)/(a*a) ) );
 //        double y = b*Math.sin( Math.toRadians( x/(2*a) ) );
@@ -81,6 +82,21 @@ public class CalculosCurva {
         System.out.println( CONTADOR + "-yP: " + yP);
     }
     
+    private double[] calcular(int xValor){
+        double[] valores = new double[2];
+        
+        double x = xValor;
+        double y = Math.sqrt( b*b*(1- (x*x)/(a*a) ) );
+        double sen  = Math.sin( Math.toRadians( teta ) );
+        double cos  = Math.cos( Math.toRadians( teta ) );
+        
+        valores[0] = x;
+        valores[1] = y;
+//        valores[0] = x*cos - y*sen + xA;
+//        valores[1] = x*sen + y*cos + yA;
+        return valores;
+    }
+    
     public double getValorXmaximo(){
         return xP;
     }
@@ -89,15 +105,15 @@ public class CalculosCurva {
         return yP;
     }
     
-//    private double[] calcularPonto( double x ){
-//        double coordenadas[] = new double[ 2 ];
-//        
-//        coordenadas[ 0 ] = x*Math.cos( Math.toRadians( teta )) + xA +
-//             b*Math.sin( Math.toRadians( x / a)) * -1 * Math.sin( teta );
-//        
-//        coordenadas[ 1 ] = x*Math.sin( Math.toRadians( teta ) ) + yA +
-//            b*Math.sin( Math.toRadians( x / a ) ) * Math.cos( Math.toRadians( teta ) );
-//        
-//        return coordenadas;
-//    }
+    public List<Vertice> getPontos(){
+        double fim = 2*a;
+        double[] valores;
+        List<Vertice> listaPontos = new ArrayList<>();
+        for( int i = 0; i < ( (int) fim); i++ ){
+            valores = calcular( i );
+            listaPontos.add(new Vertice("", valores[0],valores[1]) );
+        }
+        return listaPontos;
+        
+    }
 }

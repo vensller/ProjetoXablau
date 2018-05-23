@@ -1,10 +1,10 @@
 package view;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import model.Aresta;
 import model.Desenhavel;
+import model.Individuo;
 import model.Vertice;
 
 /**
@@ -18,14 +18,14 @@ public class TelaTeste extends javax.swing.JFrame {
     public TelaTeste( List<Desenhavel> listaDesenhaveis ) {
         initComponents();
         this.setLocationRelativeTo( null );
-        this.setSize(500, 500);
+        this.setSize(600, 600);
         
         this.listaDesenhaveis = listaDesenhaveis;
         
 //        JButton botao = new JButton();
         
         PainelTeste desenhar = new PainelTeste( this.listaDesenhaveis );
-        desenhar.setSize( 400, 400 );
+        desenhar.setSize( 500, 500 );
         
         this.add( desenhar );
         
@@ -69,8 +69,10 @@ public class TelaTeste extends javax.swing.JFrame {
             new Vertice("", 4*mul, 4*mul), 8*mul, false, "") );
         
         listaDesenhaveis.add(
-            new Aresta( new Vertice("", 1*mul, 1*mul),
+            new Aresta( new Vertice("", 1*mul, 2*mul),
             new Vertice("", 1*mul, 3*mul), 2*mul, false, "") );
+        
+        listaDesenhaveis.add( new Individuo(new Vertice("", 2*mul, 2*mul), "") );
         
         TelaTeste tt = new TelaTeste( listaDesenhaveis );
         tt.setVisible(true);
