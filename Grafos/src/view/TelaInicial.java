@@ -49,7 +49,7 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnNovoMapa = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        btnTutorial = new javax.swing.JMenuItem();
         btnSobre = new javax.swing.JMenuItem();
         btnSair = new javax.swing.JMenuItem();
 
@@ -83,8 +83,13 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
         });
         jMenu1.add(btnNovoMapa);
 
-        jMenuItem1.setText("Tutorial");
-        jMenu1.add(jMenuItem1);
+        btnTutorial.setText("Tutorial");
+        btnTutorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTutorialActionPerformed(evt);
+            }
+        });
+        jMenu1.add(btnTutorial);
 
         btnSobre.setText("Sobre");
         btnSobre.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +100,11 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
         jMenu1.add(btnSobre);
 
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
         jMenu1.add(btnSair);
 
         jMenuBar1.add(jMenu1);
@@ -134,8 +144,20 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
     private void btnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSobreActionPerformed
         this.sobre = new TelaSobre();     
         this.sobre.setVisible(true);
+        DesktopPane.removeAll();
         DesktopPane.add(sobre);
     }//GEN-LAST:event_btnSobreActionPerformed
+
+    private void btnTutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutorialActionPerformed
+        TelaTutorial tutorial = new TelaTutorial();
+        tutorial.setVisible(true);
+        DesktopPane.removeAll();
+        DesktopPane.add(tutorial);
+    }//GEN-LAST:event_btnTutorialActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSairActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -143,9 +165,9 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
     private javax.swing.JMenuItem btnNovoMapa;
     private javax.swing.JMenuItem btnSair;
     private javax.swing.JMenuItem btnSobre;
+    private javax.swing.JMenuItem btnTutorial;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 
 }
