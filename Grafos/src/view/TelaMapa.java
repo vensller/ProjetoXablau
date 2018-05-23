@@ -16,7 +16,8 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     public TelaMapa() {
         initComponents();
         controller = new ControllerMapa();
-        controller.observar(this);        
+        controller.observar(this);       
+        setTitle("Mapa");
     }
 
     @SuppressWarnings("unchecked")
@@ -24,6 +25,7 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
+        painelMapa = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         btnCarregarMapa = new javax.swing.JMenuItem();
@@ -32,10 +34,24 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
 
         jMenu1.setText("jMenu1");
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+
+        painelMapa.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout painelMapaLayout = new javax.swing.GroupLayout(painelMapa);
+        painelMapa.setLayout(painelMapaLayout);
+        painelMapaLayout.setHorizontalGroup(
+            painelMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 549, Short.MAX_VALUE)
+        );
+        painelMapaLayout.setVerticalGroup(
+            painelMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 380, Short.MAX_VALUE)
+        );
 
         jMenu2.setText("Opções");
 
@@ -71,11 +87,11 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
+            .addComponent(painelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addComponent(painelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -131,6 +147,7 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel painelMapa;
     // End of variables declaration//GEN-END:variables
   
 }

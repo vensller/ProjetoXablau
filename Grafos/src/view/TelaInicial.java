@@ -19,6 +19,7 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
 
     private ControladorTelaPrincipal controle;
     private TelaSobre sobre;
+    private Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
     
     public TelaInicial() {              
         initComponents();
@@ -30,10 +31,11 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
         }
         SwingUtilities.updateComponentTreeUI(this);
         
-        sobre = new TelaSobre();                
+        sobre = new TelaSobre();     
+        sobre.setVisible(true);
         controle = new ControladorTelaPrincipal();
         controle.addObservador(this);
-        Dimension tam = Toolkit.getDefaultToolkit().getScreenSize();
+        
         this.setSize(tam);        
         this.setTitle("Projeto Xablau!"); 
         DesktopPane.add(sobre);
@@ -47,6 +49,7 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         btnNovoMapa = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         btnSobre = new javax.swing.JMenuItem();
         btnSair = new javax.swing.JMenuItem();
 
@@ -56,6 +59,8 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
                 formWindowOpened(evt);
             }
         });
+
+        DesktopPane.setBackground(new java.awt.Color(240, 240, 240));
 
         javax.swing.GroupLayout DesktopPaneLayout = new javax.swing.GroupLayout(DesktopPane);
         DesktopPane.setLayout(DesktopPaneLayout);
@@ -77,6 +82,9 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
             }
         });
         jMenu1.add(btnNovoMapa);
+
+        jMenuItem1.setText("Tutorial");
+        jMenu1.add(jMenuItem1);
 
         btnSobre.setText("Sobre");
         btnSobre.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +120,7 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
     private void btnNovoMapaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoMapaActionPerformed
         
         TelaMapa mapa = new TelaMapa();
+        mapa.setSize(tam.width, tam.height - 100);
         mapa.setVisible(true); 
         DesktopPane.add(mapa, 0);
         
@@ -123,7 +132,9 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSobreActionPerformed
+        this.sobre = new TelaSobre();     
         this.sobre.setVisible(true);
+        DesktopPane.add(sobre);
     }//GEN-LAST:event_btnSobreActionPerformed
 
    
@@ -134,6 +145,7 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
     private javax.swing.JMenuItem btnSobre;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 
 }
