@@ -13,6 +13,6 @@ import javax.swing.JInternalFrame;
  */
 public interface ObservadorTelaPrincipal {
     
-    void addTelaSobreDesktopPane(JInternalFrame jif);
+    
     
 }

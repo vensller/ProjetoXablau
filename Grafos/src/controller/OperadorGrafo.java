@@ -10,14 +10,16 @@ import utilitarios.FloydWarshall;
 public class OperadorGrafo {
 
     private Mapa mapa;
+    private Vertice pontoEncontro;
 
     public OperadorGrafo(Mapa m) {
         this.mapa = m;
+        this.pontoEncontro = null;
     }
 
-    public Vertice definirPontoEncontro(){
+    public void definirPontoEncontro(){
         FloydWarshall floyd = new FloydWarshall(mapa);
-        return floyd.calcularSolucao();        
+        pontoEncontro = floyd.calcularSolucao();        
     }
     
     public void definirCaminhosIndividuosDestino(Vertice destino){
@@ -28,6 +30,10 @@ public class OperadorGrafo {
                 i.setCaminho(dijkstra.retornaMenorCaminho(i.getLocalizacao(), destino));
             }
         }
+    }
+    
+    public Vertice getPontoEncontro(){
+        return this.pontoEncontro;
     }
     
 }

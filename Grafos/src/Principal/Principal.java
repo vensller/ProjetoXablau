@@ -70,7 +70,8 @@ public class Principal {
         m.imprimirListaDesenhaveis();            
 
         OperadorGrafo og = new OperadorGrafo(m);
-        Vertice v = og.definirPontoEncontro();
+        og.definirPontoEncontro();
+        Vertice v = og.getPontoEncontro();
         og.definirCaminhosIndividuosDestino(v);
         System.out.println("solução: " + v.toString());
     }
