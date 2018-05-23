@@ -1,27 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
-
-import controller.ControladorTelaSobre;
-import controller.ObservadorTelaSobre;
-import javax.swing.JInternalFrame;
 
 /**
  *
  * @author douglas
  */
-public class TelaSobre extends javax.swing.JInternalFrame implements ObservadorTelaSobre{
-
-    private ControladorTelaSobre controle;
+public class TelaSobre extends javax.swing.JInternalFrame{
     
-    public TelaSobre() {
-        
-        controle = new ControladorTelaSobre();
-        controle.addObservador(this);
-        
+    public TelaSobre() { 
+       
         initComponents();
         
     }
@@ -40,6 +26,8 @@ public class TelaSobre extends javax.swing.JInternalFrame implements ObservadorT
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -111,8 +99,4 @@ public class TelaSobre extends javax.swing.JInternalFrame implements ObservadorT
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public JInternalFrame getInternalFrame() {
-        return this;
-    }
 }
