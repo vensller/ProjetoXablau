@@ -142,16 +142,17 @@ public class TelaInicial extends javax.swing.JFrame implements ObservadorTelaPri
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSobreActionPerformed
+        DesktopPane.removeAll();
         this.sobre = new TelaSobre();     
         this.sobre.setVisible(true);
-        DesktopPane.removeAll();
         DesktopPane.add(sobre);
     }//GEN-LAST:event_btnSobreActionPerformed
 
     private void btnTutorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTutorialActionPerformed
-        TelaTutorial tutorial = new TelaTutorial();
-        tutorial.setVisible(true);
         DesktopPane.removeAll();
+        TelaTutorial tutorial = new TelaTutorial();
+        tutorial.setSize(tam.width, tam.height - 100);
+        tutorial.setVisible(true);
         DesktopPane.add(tutorial);
     }//GEN-LAST:event_btnTutorialActionPerformed
 
