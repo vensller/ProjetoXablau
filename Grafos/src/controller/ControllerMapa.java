@@ -20,8 +20,7 @@ public class ControllerMapa {
     public ControllerMapa(){
         mapa = new Mapa(600, 400);    
         observadores = new ArrayList<>();
-        mapaCarregado = false;
-        operador = new OperadorGrafo(mapa);
+        mapaCarregado = false;        
     }
     
     public void observar(ObservadorMapa obs){
@@ -33,7 +32,8 @@ public class ControllerMapa {
     }
     
     public void carregarMapa(String nomeArquivo){
-        operadorArquivo = new OperadorArquivos(nomeArquivo);        
+        operadorArquivo = new OperadorArquivos(nomeArquivo);     
+        operador = new OperadorGrafo(mapa);
         try{
             this.mapa.setListaDesenaveis(operadorArquivo.ler());
             this.mapaCarregado = !mapa.getListaDesenhaveis().isEmpty();
