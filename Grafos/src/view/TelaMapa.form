@@ -29,14 +29,25 @@
             <MenuItem class="javax.swing.JMenuItem" name="btnCalcularSolucao">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Calcular Ponto de Encontro"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularSolucaoActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="btnIniciarEncontro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Iniciar Encontro"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIniciarEncontroActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnLimparMapa">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Limpar Mapa"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparMapaActionPerformed"/>

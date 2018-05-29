@@ -46,6 +46,7 @@ public class ControllerMapa {
     public void limparMapa(){
         this.mapa.getListaDesenhaveis().clear();
         this.mapaCarregado = false;
+        this.operador = null;
         this.notificarLimpezaMapa();
     }
     
@@ -56,6 +57,20 @@ public class ControllerMapa {
             if (operador.getPontoEncontro() != null){
                 this.notificarPontoEncontroDefinido(operador.getPontoEncontro().getValorX(), operador.getPontoEncontro().getValorY());
             }
+        }
+    }
+    
+    public void iniciarEncontro(){
+        if (operador.getPontoEncontro() != null){
+            operador.definirCaminhosIndividuosDestino(operador.getPontoEncontro());
+        }else {
+            this.notificarPontoEncontroNaoDefinido();
+        }
+    }
+    
+    private void notificarPontoEncontroNaoDefinido(){
+        for (ObservadorMapa obs : observadores){
+            obs.receberNotificacaoPontoEncontroNaoDefinido();
         }
     }
     

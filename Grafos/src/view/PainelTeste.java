@@ -10,7 +10,7 @@ public class PainelTeste extends javax.swing.JPanel {
 
     public PainelTeste( List<Desenhavel> listaDesenhaveis ) {
         initComponents();
-        this.listaDesenhaveis = listaDesenhaveis;
+        this.listaDesenhaveis = listaDesenhaveis;        
     }
     
     @Override

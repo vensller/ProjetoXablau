@@ -33,13 +33,14 @@ public class ListaCaminho {
         }
     }
     
-    public String listarCaminho(){
-        No atual = inicio;
-        String retorno = "";
-        while (atual != null){
-            retorno += "Vertice: " + atual.getVertice().getNome() + ".\n";
-            atual = atual.getProximo();
-        }
-        return retorno;
+    public String listar(){
+        No atual = inicio; 
+        String retorno = ""; 
+        while (atual != null){ 
+            retorno += "Aresta: " + atual.getAresta().getStringParaDocumento() + ".\n"; 
+            atual = atual.getProximo(); 
+        } 
+        return retorno; 
     }
+       
 }

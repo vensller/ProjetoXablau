@@ -1,0 +1,54 @@
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+
+%\usepackage[brazil]{babel}   
+\usepackage[latin1]{inputenc}  
+
+     
+\sloppy
+
+\title{Relatório}
+
+\author{Douglas Martins \inst{1} Ivens Diego Müller\inst{2} Tiago Funk\inst{3} }
+
+
+\address{CEAVI - Universidade do Estado de Santa Catarina(UDESC)
+	Ibirama - SC - Brasil
+  \email{ivens.muller@edu.udesc.br, douglas.martins@edu.udesc.br, tiago.funk@edu.udesc.br}
+}
+
+\begin{document} 
+
+\maketitle
+
+\section{Informações Gerais}
+
+\section{Dijkstra}
+\paragraph{}
+	Através do algoritmo de Dijkstra, podemos realizar o cálculo do caminho mais curto entre dois pontos. Para isso, utilizaremos Dijkstra em conjunto com o nosso grafo, que é definido por um arquivo texto.
+	O Algoritmo de Dijkstra, a partir de um ponto de origem, que no nosso caso é um vértice, realiza o cálculo do caminho que contém o menor custo do ponto de origem para todos os outros vértices do grafo.
+	
+\paragraph{}
+	O algoritmo de Floyd Warshall, explicado na próxima seção, é utilizado para definirmos qual o ponto de encontro entre todos os vértices do grafo, e baseando-se nesse ponto de encontro como o destino de todos os indivíduos, aplicamos o algoritmo de Dijkstra para definir o caminho que contém o menor custo, que nesse caso seria a menor distância, entre o vértice onde o indivíduo está posicionado, e o vértice de destino, que é o ponto de encontro.
+
+\paragraph{}
+	"Este Algoritmo parte de uma estimativa inicial para a distância mínima, que é considerada infinita, e vai sucessivamente ajustando-a"\cite{de2008algoritmo}.
+	No início da execução do algoritmo, partimos de que todos os vértices estão a uma distância infinita do vértice de posicionamento do indivíduo e, o vértice onde o indivíduo está posicionado, contém uma distância zero. Após isso, verifica-se os vértices laterais que contém a menor distância, ou seja, os vértices ligados ao do indivíduo e salva-se essa distância. A partir desse momento, escolhe-se o vértice de menor distância para ser o posicionado, e calcula-se a sua distância para os vértices adjacentes, sempre somando a distância do vértice anterior. É feito esta iteração até que todos os vértices tenham sido verificados, ou, no nosso caso, até o vértice de destino.
+
+\paragraph{}
+	Foi realizado uma alteração, para que no final da execução do algoritmo, ele retorne uma lista encadeada de arestas, que será o caminho por onde o indivíduo deverá percorrer para chegar até o ponto de encontro. 
+
+\section{Floyd Warshall}
+
+\section{Cálculos de curvatura}
+
+\section{Operador de Arquivos}
+
+\bibliographystyle{sbc}
+\bibliography{sbc-template}
+
+
+\end{document}
