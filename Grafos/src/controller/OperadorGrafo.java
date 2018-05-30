@@ -34,6 +34,6 @@ public class OperadorGrafo {
     
     public Vertice getPontoEncontro(){
         return this.pontoEncontro;
-    }
+    }    
     
 }

@@ -20,8 +20,7 @@ public class ControllerMapa {
     public ControllerMapa(){
         mapa = new Mapa(600, 400);    
         observadores = new ArrayList<>();
-        mapaCarregado = false;
-        operador = new OperadorGrafo(mapa);
+        mapaCarregado = false;        
     }
     
     public void observar(ObservadorMapa obs){
@@ -33,7 +32,8 @@ public class ControllerMapa {
     }
     
     public void carregarMapa(String nomeArquivo){
-        operadorArquivo = new OperadorArquivos(nomeArquivo);        
+        operadorArquivo = new OperadorArquivos(nomeArquivo);     
+        operador = new OperadorGrafo(mapa);
         try{
             this.mapa.setListaDesenaveis(operadorArquivo.ler());
             this.mapaCarregado = !mapa.getListaDesenhaveis().isEmpty();
@@ -46,6 +46,7 @@ public class ControllerMapa {
     public void limparMapa(){
         this.mapa.getListaDesenhaveis().clear();
         this.mapaCarregado = false;
+        this.operador = null;
         this.notificarLimpezaMapa();
     }
     
@@ -56,6 +57,20 @@ public class ControllerMapa {
             if (operador.getPontoEncontro() != null){
                 this.notificarPontoEncontroDefinido(operador.getPontoEncontro().getValorX(), operador.getPontoEncontro().getValorY());
             }
+        }
+    }
+    
+    public void iniciarEncontro(){
+        if (operador.getPontoEncontro() != null){
+            operador.definirCaminhosIndividuosDestino(operador.getPontoEncontro());
+        }else {
+            this.notificarPontoEncontroNaoDefinido();
+        }
+    }
+    
+    private void notificarPontoEncontroNaoDefinido(){
+        for (ObservadorMapa obs : observadores){
+            obs.receberNotificacaoPontoEncontroNaoDefinido();
         }
     }
     

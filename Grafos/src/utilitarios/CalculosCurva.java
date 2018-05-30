@@ -48,7 +48,13 @@ public class CalculosCurva {
     }
     
     private void calcularValorB(){
-        b = Math.sqrt( ( 2*d*d )/( Math.PI * Math.PI ) - a*a );
+        double aux = ( 2*d*d )/( Math.PI * Math.PI ) - a*a;
+        if( aux < 0 ){
+            b = 0;
+        }else{
+            b = Math.sqrt( aux );
+        }
+//        b = Math.sqrt( ( 2*d*d )/( Math.PI * Math.PI ) - a*a );
 //        System.out.println("b: " + b);
     }
     
@@ -106,7 +112,7 @@ public class CalculosCurva {
         double fim = 2*a;
         double[] valores;
         List<Vertice> listaPontos = new ArrayList<>();
-        for( int i = 0; i < ( (int) fim); i++ ){
+        for( int i = 1; i <= ( (int) fim); i++ ){
             valores = calcular( i );
             listaPontos.add(new Vertice("", valores[0],valores[1]) );
         }

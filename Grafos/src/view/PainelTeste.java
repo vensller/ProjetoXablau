@@ -37,6 +37,37 @@ public class PainelTeste extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void iniciarDesenhos() {
+        Thread t = new Thread(){
+            @Override
+            public void run(){
+                int contador = 0;
+                while( houverPontos() ){
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                    repaint();
+//                    System.out.println("Contador: " + contador );
+                    contador++;
+                    for( Desenhavel d: listaDesenhaveis){
+                        d.andar();
+                    }
+                }
+            }
+        };
+        t.start();
+    }
+
+    private boolean houverPontos() {
+        boolean existemPontos = true;
+        for( Desenhavel d : listaDesenhaveis ){
+            existemPontos = existemPontos && d.existemPontos();
+        }
+        return existemPontos;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

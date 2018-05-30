@@ -59,11 +59,12 @@ public class Dijkstra {
         int verticeDestino = mapa.getVertices().indexOf(destino);        
         caminhoVert.add(verticeDestino);        
         adicionaCaminhoRecursivo(caminhoVert, verticeDestino, mapa.getVertices().indexOf(origem));
-        for (int i = caminhoVert.size() - 1; i >= 0; i --){
-            No novoNo = new No(mapa.getVertices().get(caminhoVert.get(i)), null);
+        for (int i = caminhoVert.size() - 1; i > 0; i --){
+            No novoNo = new No(retornaAresta(mapa.getVertices().get(caminhoVert.get(i)), mapa.getVertices().get(caminhoVert.get(i - 1))), null);
             caminho.Adicionar(novoNo);
         }
-    }
+        System.out.println(caminho.listar());
+    }    
     
     private void adicionaCaminhoRecursivo(List<Integer> caminho, int vertice, int verticeParada){
         int antecessor = antecessores[vertice];

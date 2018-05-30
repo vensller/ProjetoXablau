@@ -17,6 +17,8 @@ import utilitarios.FloydWarshall;
 public class TelaTeste extends javax.swing.JFrame {
     
     private List<Desenhavel> listaDesenhaveis;
+    
+    private PainelTeste desenhar;
 
     public TelaTeste( List<Desenhavel> listaDesenhaveis ) {
         initComponents();
@@ -27,7 +29,7 @@ public class TelaTeste extends javax.swing.JFrame {
         
 //        JButton botao = new JButton();
         
-        PainelTeste desenhar = new PainelTeste( this.listaDesenhaveis );
+        desenhar = new PainelTeste( this.listaDesenhaveis );
         desenhar.setSize( 500, 500 );
         
         this.add( desenhar );
@@ -37,53 +39,86 @@ public class TelaTeste extends javax.swing.JFrame {
     public void setListaDesenhaveis( List<Desenhavel> listaDesenhaveis ){
         this.listaDesenhaveis = listaDesenhaveis;
     }
+    
+    public void iniciarDesenhos(){
+        desenhar.iniciarDesenhos();
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botaoCaminhar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        botaoCaminhar.setText("Caminhar");
+        botaoCaminhar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCaminharActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(514, Short.MAX_VALUE)
+                .addComponent(botaoCaminhar)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(botaoCaminhar)
+                .addContainerGap(247, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botaoCaminharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCaminharActionPerformed
+        iniciarDesenhos();
+    }//GEN-LAST:event_botaoCaminharActionPerformed
+
 
     public static void main(String args[]) {
         final int mul = 100;
-        Individuo i1, i2, i3;
+        Individuo i1, i2;
+        Aresta a1, a2, a3, a4;
+        Vertice v1, v2, v3, v4, v5;
         List<Desenhavel> listaDesenhaveis = new ArrayList<>();
         
-        listaDesenhaveis.add( 
-            new Aresta( new Vertice("", 2*mul, 1*mul),
-            new Vertice("", 2*mul, 2*mul), 1*mul, false, "") );
+        v1 = new Vertice("", 2*mul, 1*mul);
+        v2 = new Vertice("", 2*mul, 2*mul);
+        v3 = new Vertice("", 1*mul, 2*mul);
+        v4 = new Vertice("", 2*mul, 3*mul);
+        v5 = new Vertice("", 3*mul, 2*mul);
         
-        listaDesenhaveis.add( 
-            new Aresta( new Vertice("", 1*mul, 2*mul), 
-            new Vertice("", 2*mul, 2*mul), 1*mul, false, "") );
+        listaDesenhaveis.add( v1 );
+        listaDesenhaveis.add( v2 );
+        listaDesenhaveis.add( v3 );
+        listaDesenhaveis.add( v4 );
+        listaDesenhaveis.add( v5 );
         
-        listaDesenhaveis.add(
-            new Aresta( new Vertice("", 2*mul, 3*mul),
-            new Vertice("", 2*mul, 2*mul), 1*mul, false, "") );
+        a1 = new Aresta( v1, v2, 1*mul, false, "");
+        listaDesenhaveis.add( a1 );
         
-        listaDesenhaveis.add(
-            new Aresta( new Vertice("", 3*mul, 2*mul),
-            new Vertice("", 2*mul, 2*mul), 1*mul, false, "") );
+        a2 = new Aresta( v3, v2, 1*mul, false, "");
+        listaDesenhaveis.add( a2 );
         
-        i1 = new Individuo(new Vertice("", 1*mul, 2*mul), "");
+        a3 = new Aresta( v4, v2, 1*mul, false, "");
+        listaDesenhaveis.add( a3 );
+        
+        a4 = new Aresta( v5, v2, 1*mul, false, "");
+        listaDesenhaveis.add( a4 );
+        
+        i1 = new Individuo( v3, "");
         listaDesenhaveis.add( i1 );
         
-        i2 = new Individuo(new Vertice("", 2*mul, 3*mul), "");
+        i2 = new Individuo( v4, "");
         listaDesenhaveis.add( i2 );
         
         Mapa mp = new Mapa(200, 200);
@@ -98,8 +133,11 @@ public class TelaTeste extends javax.swing.JFrame {
         
         TelaTeste tt = new TelaTeste( listaDesenhaveis );
         tt.setVisible(true);
+        
+//        tt.iniciarDesenhos();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botaoCaminhar;
     // End of variables declaration//GEN-END:variables
 }

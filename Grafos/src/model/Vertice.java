@@ -63,6 +63,7 @@ public class Vertice implements Desenhavel {
         this.valorY = valorY;
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -80,6 +81,15 @@ public class Vertice implements Desenhavel {
         if (Double.doubleToLongBits(this.valorY) != Double.doubleToLongBits(other.valorY)) {
             return false;
         }
+        return true;
+    }
+
+    @Override
+    public void andar() {
+    }
+
+    @Override
+    public boolean existemPontos() {
         return true;
     }
 

@@ -30,6 +30,7 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
         jMenu2 = new javax.swing.JMenu();
         btnCarregarMapa = new javax.swing.JMenuItem();
         btnCalcularSolucao = new javax.swing.JMenuItem();
+        btnIniciarEncontro = new javax.swing.JMenuItem();
         btnLimparMapa = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
@@ -64,6 +65,7 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
         jMenu2.add(btnCarregarMapa);
 
         btnCalcularSolucao.setText("Calcular Ponto de Encontro");
+        btnCalcularSolucao.setEnabled(false);
         btnCalcularSolucao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalcularSolucaoActionPerformed(evt);
@@ -71,7 +73,17 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
         });
         jMenu2.add(btnCalcularSolucao);
 
+        btnIniciarEncontro.setText("Iniciar Encontro");
+        btnIniciarEncontro.setEnabled(false);
+        btnIniciarEncontro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarEncontroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btnIniciarEncontro);
+
         btnLimparMapa.setText("Limpar Mapa");
+        btnLimparMapa.setEnabled(false);
         btnLimparMapa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimparMapaActionPerformed(evt);
@@ -115,6 +127,10 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
         controller.calcularPontoEncontro();
     }//GEN-LAST:event_btnCalcularSolucaoActionPerformed
 
+    private void btnIniciarEncontroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarEncontroActionPerformed
+        
+    }//GEN-LAST:event_btnIniciarEncontroActionPerformed
+
     @Override
     public void receberNotificacaoErroAoCarregarMapa(String erro) {
         JOptionPane.showMessageDialog(this, erro);
@@ -123,31 +139,48 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     @Override
     public void receberNotificacaoMapaLimpo() {
         JOptionPane.showMessageDialog(this, "Mapa resetado!");
+        this.btnLimparMapa.setEnabled(false);
+        this.btnCalcularSolucao.setEnabled(false);
+        this.btnIniciarEncontro.setEnabled(false);
+        this.btnCarregarMapa.setEnabled(true);
+        this.getContentPane().repaint();
     }
 
     @Override
     public void receberNotificacaoMapaCarregado(boolean temRegistros) {
         if (!temRegistros) JOptionPane.showMessageDialog(this, "Não foram encontrados registros no arquivo escolhido!");
         else {
-           PainelTeste teste = new PainelTeste(controller.getMapa().getListaDesenhaveis());           
-           teste.setSize(600, 400);
-           this.add(teste);           
+           PainelTeste teste = new PainelTeste(controller.getMapa().getListaDesenhaveis());                                 
+           this.add(teste);   
+           this.setContentPane(teste);
+           teste.paintAll(teste.getGraphics());
+           this.btnCalcularSolucao.setEnabled(true);
+           this.btnLimparMapa.setEnabled(true);
+           this.btnCarregarMapa.setEnabled(false);
         }
     }
     
     @Override
     public void receberNotificacaoPontoEncontroDefinido(double x, double y) {
         JOptionPane.showMessageDialog(this, "O ponto de encontro fica no Vértice com x = " + x + " e y = " + y);
+        this.btnIniciarEncontro.setEnabled(true);
+    }
+    
+    @Override
+    public void receberNotificacaoPontoEncontroNaoDefinido() {
+        JOptionPane.showMessageDialog(this, "O ponto de encontro ainda não foi definido!");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCalcularSolucao;
     private javax.swing.JMenuItem btnCarregarMapa;
+    private javax.swing.JMenuItem btnIniciarEncontro;
     private javax.swing.JMenuItem btnLimparMapa;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel painelMapa;
     // End of variables declaration//GEN-END:variables
+
   
 }

@@ -91,4 +91,13 @@ public class Aresta implements Desenhavel {
                 + comprimento + ", excenticidade=" + excentricidade + "]";
     }
 
+    @Override
+    public void andar() {
+    }
+
+    @Override
+    public boolean existemPontos() {
+        return true;
+    }
+
 }

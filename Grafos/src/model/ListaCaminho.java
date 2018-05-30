@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import utilitarios.CalculosCurva;
 
 /**
  *
@@ -37,22 +38,25 @@ public class ListaCaminho {
     public List<Vertice> calcularCaminho(){
         No aux = inicio;
         List<Vertice> listaVertices = new ArrayList<>();
+        CalculosCurva cc;
         
-        while( aux != fim ){
-//            aux.
+        while( aux != null ){
+            cc = new CalculosCurva( aux.getAresta() );
+            listaVertices.addAll( cc.getPontos() );
             aux = aux.getProximo();
         }
         
         return listaVertices;
-    } 
-    
-    public String listarCaminho(){
-        No atual = inicio;
-        String retorno = "";
-        while (atual != null){
-            retorno += "Vertice: " + atual.getVertice().getNome() + ".\n";
-            atual = atual.getProximo();
-        }
-        return retorno;
     }
+
+    public String listar(){
+        No atual = inicio; 
+        String retorno = ""; 
+        while (atual != null){ 
+            retorno += "Aresta: " + atual.getAresta().getStringParaDocumento() + ".\n"; 
+            atual = atual.getProximo(); 
+        } 
+        return retorno; 
+    }
+       
 }

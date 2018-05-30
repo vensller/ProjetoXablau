@@ -13,7 +13,7 @@ public class Individuo implements Desenhavel {
     private Vertice localizacao;
     private ListaCaminho caminho;
     
-    private Vertice pontoAtual;
+    private int verticeAtual = 0;
     private List<Vertice> listaVerticesCaminho;
 
     @Override
@@ -23,21 +23,19 @@ public class Individuo implements Desenhavel {
 
     @Override
     public void desenhar(java.awt.Graphics g) {
+        System.out.println("VerticeAtual: " + verticeAtual);
+        Vertice pontoAtual = listaVerticesCaminho.get( verticeAtual );
         Graphics2D g2 = (Graphics2D) g;
         Ellipse2D.Double circle = new Ellipse2D.Double(
            pontoAtual.getValorX()-RAIO/2, pontoAtual.getValorY()-RAIO/2, RAIO, RAIO);
         g2.setColor(Color.red);
         g2.fill(circle);
-        
-        //listaVertices.remove(0);
-        //pontoAtual = listaVertices.get(0);
     }
 
     public Individuo(Vertice localizacao, String nome) {        
         this.nome = nome;
         this.localizacao = localizacao;
         this.caminho = null;
-        pontoAtual = localizacao;
     }
 
     @Override
@@ -73,5 +71,17 @@ public class Individuo implements Desenhavel {
     private void calcularCaminho() {
         listaVerticesCaminho = caminho.calcularCaminho();
     }
+    
+    @Override
+    public boolean existemPontos(){
+        return verticeAtual < listaVerticesCaminho.size()-1;
+    }
 
+    @Override
+    public void andar() {
+        if( verticeAtual < listaVerticesCaminho.size()-1 ){
+            verticeAtual++;
+        }
+        System.out.println("Andou: " + verticeAtual);
+    }
 }

@@ -10,5 +10,5 @@ public interface ObservadorMapa {
     void receberNotificacaoMapaCarregado(boolean temRegistros);
     void receberNotificacaoMapaLimpo();
     void receberNotificacaoPontoEncontroDefinido(double x, double y);
-    
+    void receberNotificacaoPontoEncontroNaoDefinido();
 }

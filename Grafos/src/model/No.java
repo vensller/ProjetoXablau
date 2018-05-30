@@ -6,26 +6,26 @@ package model;
  */
 public class No {
     
-    private Vertice vertice;
+    private Aresta aresta;
     private No proximo;
 
-    public No(Vertice vertice, No proximo) {
-        this.vertice = vertice;
+    public No(Aresta aresta, No proximo) {
+        this.aresta = aresta;
         this.proximo = proximo;
     }
 
-   public No(){
-       this.vertice = null;
-       this.proximo = null;
-   }
-    
-    public Vertice getVertice() {
-        return vertice;
+    public No(){
+        this.aresta = null;
+        this.proximo = null;
     }
 
-    public void setVertice(Vertice vertice) {
-        this.vertice = vertice;
+    public Aresta getAresta() {
+        return aresta;
     }
+
+    public void setAresta(Aresta aresta) {
+        this.aresta = aresta;
+    }       
 
     public No getProximo() {
         return proximo;
