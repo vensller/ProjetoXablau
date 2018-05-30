@@ -1,6 +1,7 @@
 package model;
 
-import model.No;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -32,6 +33,18 @@ public class ListaCaminho {
             }
         }
     }
+    
+    public List<Vertice> calcularCaminho(){
+        No aux = inicio;
+        List<Vertice> listaVertices = new ArrayList<>();
+        
+        while( aux != fim ){
+//            aux.
+            aux = aux.getProximo();
+        }
+        
+        return listaVertices;
+    } 
     
     public String listarCaminho(){
         No atual = inicio;

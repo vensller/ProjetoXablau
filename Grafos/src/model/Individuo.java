@@ -3,15 +3,18 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.util.List;
 
 public class Individuo implements Desenhavel {
-
+    
+    private final static int RAIO = 10;
+    
     private String nome;
     private Vertice localizacao;
     private ListaCaminho caminho;
     
-    private double proximoX;
-    private double proximoY;
+    private Vertice pontoAtual;
+    private List<Vertice> listaVerticesCaminho;
 
     @Override
     public String getStringParaDocumento() {
@@ -20,19 +23,21 @@ public class Individuo implements Desenhavel {
 
     @Override
     public void desenhar(java.awt.Graphics g) {
-        final int raio = 10;
         Graphics2D g2 = (Graphics2D) g;
-        Ellipse2D.Double circle =  new Ellipse2D.Double(proximoX-raio/2, proximoY-raio/2, raio, raio);
+        Ellipse2D.Double circle = new Ellipse2D.Double(
+           pontoAtual.getValorX()-RAIO/2, pontoAtual.getValorY()-RAIO/2, RAIO, RAIO);
         g2.setColor(Color.red);
         g2.fill(circle);
+        
+        //listaVertices.remove(0);
+        //pontoAtual = listaVertices.get(0);
     }
 
     public Individuo(Vertice localizacao, String nome) {        
         this.nome = nome;
         this.localizacao = localizacao;
         this.caminho = null;
-        proximoX = localizacao.getValorX();
-        proximoY = localizacao.getValorY();
+        pontoAtual = localizacao;
     }
 
     @Override
@@ -62,6 +67,11 @@ public class Individuo implements Desenhavel {
 
     public void setCaminho(ListaCaminho caminho) {
         this.caminho = caminho;
+        calcularCaminho();
     }    
+
+    private void calcularCaminho() {
+        listaVerticesCaminho = caminho.calcularCaminho();
+    }
 
 }

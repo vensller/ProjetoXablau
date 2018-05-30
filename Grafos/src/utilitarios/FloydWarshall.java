@@ -26,15 +26,24 @@ public class FloydWarshall {
         List< Aresta> listasArestas = new ArrayList<>();
         List< Vertice> listasVertices = new ArrayList<>();
 
-        for (Desenhavel des : mapa.getListaDesenhaveis()) {
-            if (des instanceof Aresta) {
-                listasArestas.add((Aresta) des);
-            }
-        }
-
-        for (Desenhavel des : mapa.getListaDesenhaveis()) {
-            if (des instanceof Vertice) {
-                listasVertices.add((Vertice) des);
+        {
+            Aresta a;
+            Vertice v;
+            for (Desenhavel des : mapa.getListaDesenhaveis()) {
+                if (des instanceof Aresta) {
+                    a = (Aresta) des;
+                    listasArestas.add( a );
+                    
+                    v = a.getOrigem();
+                    if( !listasVertices.contains(v) ){
+                        listasVertices.add( v );
+                    }
+                    
+                    v = a.getDestino();
+                    if( !listasVertices.contains( v ) ){
+                        listasVertices.add( v );
+                    }
+                }
             }
         }
         

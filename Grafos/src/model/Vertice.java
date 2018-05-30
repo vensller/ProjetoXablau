@@ -1,70 +1,87 @@
 package model;
 
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
 
 public class Vertice implements Desenhavel {
-	
-	private String nome;
-	private double valorX;
-	private double valorY;
-	
+    
+    private static final int RAIO = 5;
 
-	@Override
-	public String getStringParaDocumento() {		
-		return "v:" + this.nome + ","
-                            + this.valorX + ","
-                            + this.valorY + ";\n";
-	}
+    private String nome;
+    private double valorX;
+    private double valorY;
 
-	@Override
-	public void desenhar(java.awt.Graphics g) {
-            final int raio = 10;
-            Graphics2D g2 = (Graphics2D) g;
-            Ellipse2D.Double circle =  new Ellipse2D.Double(valorX-raio/2, valorY-raio/2, raio, raio);
-            g2.setColor(Color.green);
-            g2.fill(circle);
-	}
-	
-	public Vertice(String nome, double valorX, double valorY) {		
-		this.nome = nome;
-		this.valorX = valorX;
-		this.valorY = valorY;
-	}
+    @Override
+    public String getStringParaDocumento() {
+        return "v:" + this.nome + ","
+                + this.valorX + ","
+                + this.valorY + ";\n";
+    }
 
-	@Override
-	public String toString() {
-		return "Vertice [nome=" + nome + ", valorX=" + valorX + ", valorY=" + valorY + "]";
-	}
+    @Override
+    public void desenhar(java.awt.Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        Ellipse2D.Double circle = new Ellipse2D.Double(
+            valorX - RAIO / 2, valorY - RAIO / 2, RAIO, RAIO);
+        g2.setColor(Color.BLUE);
+        g2.fill(circle);
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    public Vertice(String nome, double valorX, double valorY) {
+        this.nome = nome;
+        this.valorX = valorX;
+        this.valorY = valorY;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @Override
+    public String toString() {
+        return "Vertice [nome=" + nome + ", valorX=" + valorX + ", valorY=" + valorY + "]";
+    }
 
-	public double getValorX() {
-		return valorX;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setValorX(double valorX) {
-		this.valorX = valorX;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public double getValorY() {
-		return valorY;
-	}
+    public double getValorX() {
+        return valorX;
+    }
 
-	public void setValorY(double valorY) {
-		this.valorY = valorY;
-	}
-	
+    public void setValorX(double valorX) {
+        this.valorX = valorX;
+    }
+
+    public double getValorY() {
+        return valorY;
+    }
+
+    public void setValorY(double valorY) {
+        this.valorY = valorY;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Vertice other = (Vertice) obj;
+        if (Double.doubleToLongBits(this.valorX) != Double.doubleToLongBits(other.valorX)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.valorY) != Double.doubleToLongBits(other.valorY)) {
+            return false;
+        }
+        return true;
+    }
+
+    
 }

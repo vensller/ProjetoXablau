@@ -7,8 +7,6 @@ import model.Vertice;
 
 public class CalculosCurva {
     
-    private static int CONTADOR = 1;
-    
     private double a;
     private double b;
     private double teta;
@@ -39,7 +37,6 @@ public class CalculosCurva {
         calcularTeta();
         calcularPontoMaximo();
         
-        CONTADOR++;
     }
     
     private void calcularValorA(){
@@ -47,25 +44,25 @@ public class CalculosCurva {
             Math.pow(( xA + xB ) / 2 - xA, 2) +
             Math.pow(( yA + yB ) / 2 - yA, 2);
         a = Math.sqrt( aux );
-        System.out.println( CONTADOR + "-a: " + a);
+//        System.out.println( "a: " + a);
     }
     
     private void calcularValorB(){
         b = Math.sqrt( ( 2*d*d )/( Math.PI * Math.PI ) - a*a );
-        System.out.println(CONTADOR + "-b: " + b);
+//        System.out.println("b: " + b);
     }
     
     private void calcularOrigem(){
         xO = ( xA - xB)/2;
         yO = ( yA - yB)/2;
-        System.out.println(CONTADOR + "-xO: " + xO);
-        System.out.println(CONTADOR + "-yO: " + yO);
+//        System.out.println("xO: " + xO);
+//        System.out.println("yO: " + yO);
     }
     
     private void calcularTeta(){
         double var = ( yB - yA )/( xB - xA );
         teta = Math.atan( Math.toRadians( var ) );
-        System.out.println(CONTADOR + "-teta: " + teta);
+//        System.out.println("teta: " + teta);
     }
     
     private void calcularPontoMaximo(){
@@ -78,11 +75,11 @@ public class CalculosCurva {
         xP = x*cos - y*sen + xA;
         yP = x*sen + y*cos + yA;
         
-        System.out.println( CONTADOR + "-xP: " + xP);
-        System.out.println( CONTADOR + "-yP: " + yP);
+//        System.out.println( "xP: " + xP);
+//        System.out.println( "yP: " + yP);
     }
     
-    private double[] calcular(int xValor){
+    private double[] calcular(double xValor){
         double[] valores = new double[2];
         
         double x = xValor;
@@ -90,10 +87,10 @@ public class CalculosCurva {
         double sen  = Math.sin( Math.toRadians( teta ) );
         double cos  = Math.cos( Math.toRadians( teta ) );
         
-        valores[0] = x;
-        valores[1] = y;
-//        valores[0] = x*cos - y*sen + xA;
-//        valores[1] = x*sen + y*cos + yA;
+//        valores[0] = x;
+//        valores[1] = y;
+        valores[0] = x*cos - y*sen + xA;
+        valores[1] = x*sen + y*cos + yA;
         return valores;
     }
     
@@ -113,6 +110,8 @@ public class CalculosCurva {
             valores = calcular( i );
             listaPontos.add(new Vertice("", valores[0],valores[1]) );
         }
+        valores = calcular( fim );
+        listaPontos.add(new Vertice("", valores[0], valores[1]) );
         return listaPontos;
         
     }

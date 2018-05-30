@@ -5,7 +5,10 @@ import java.util.List;
 import model.Aresta;
 import model.Desenhavel;
 import model.Individuo;
+import model.Mapa;
 import model.Vertice;
+import utilitarios.Dijkstra;
+import utilitarios.FloydWarshall;
 
 /**
  *
@@ -58,21 +61,40 @@ public class TelaTeste extends javax.swing.JFrame {
 
     public static void main(String args[]) {
         final int mul = 100;
+        Individuo i1, i2, i3;
         List<Desenhavel> listaDesenhaveis = new ArrayList<>();
         
         listaDesenhaveis.add( 
-            new Aresta( new Vertice("", 2*mul, 2*mul),
-            new Vertice("", 3*mul, 3*mul), 5*mul, false, "") );
+            new Aresta( new Vertice("", 2*mul, 1*mul),
+            new Vertice("", 2*mul, 2*mul), 1*mul, false, "") );
         
         listaDesenhaveis.add( 
-            new Aresta( new Vertice("", 1*mul, 1*mul), 
-            new Vertice("", 4*mul, 4*mul), 8*mul, false, "") );
+            new Aresta( new Vertice("", 1*mul, 2*mul), 
+            new Vertice("", 2*mul, 2*mul), 1*mul, false, "") );
         
         listaDesenhaveis.add(
-            new Aresta( new Vertice("", 1*mul, 2*mul),
-            new Vertice("", 1*mul, 3*mul), 2*mul, false, "") );
+            new Aresta( new Vertice("", 2*mul, 3*mul),
+            new Vertice("", 2*mul, 2*mul), 1*mul, false, "") );
         
-        listaDesenhaveis.add( new Individuo(new Vertice("", 2*mul, 2*mul), "") );
+        listaDesenhaveis.add(
+            new Aresta( new Vertice("", 3*mul, 2*mul),
+            new Vertice("", 2*mul, 2*mul), 1*mul, false, "") );
+        
+        i1 = new Individuo(new Vertice("", 1*mul, 2*mul), "");
+        listaDesenhaveis.add( i1 );
+        
+        i2 = new Individuo(new Vertice("", 2*mul, 3*mul), "");
+        listaDesenhaveis.add( i2 );
+        
+        Mapa mp = new Mapa(200, 200);
+        mp.setListaDesenaveis(listaDesenhaveis);
+        
+        FloydWarshall fw = new FloydWarshall(mp);
+        Vertice solucao = fw.calcularSolucao();
+        
+        Dijkstra d = new Dijkstra(mp);
+        i1.setCaminho( d.retornaMenorCaminho( i1.getLocalizacao(), solucao) );
+        i2.setCaminho( d.retornaMenorCaminho( i2.getLocalizacao(), solucao) );
         
         TelaTeste tt = new TelaTeste( listaDesenhaveis );
         tt.setVisible(true);

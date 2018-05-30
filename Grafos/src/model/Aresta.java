@@ -1,7 +1,6 @@
 package model;
 
 import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
 import java.awt.geom.QuadCurve2D;
 import utilitarios.CalculosCurva;
 
