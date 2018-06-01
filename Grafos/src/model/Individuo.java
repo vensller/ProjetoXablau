@@ -23,7 +23,6 @@ public class Individuo implements Desenhavel {
 
     @Override
     public void desenhar(java.awt.Graphics g) {
-        System.out.println("VerticeAtual: " + verticeAtual);
         Vertice pontoAtual = listaVerticesCaminho.get( verticeAtual );
         Graphics2D g2 = (Graphics2D) g;
         Ellipse2D.Double circle = new Ellipse2D.Double(
@@ -82,6 +81,5 @@ public class Individuo implements Desenhavel {
         if( verticeAtual < listaVerticesCaminho.size()-1 ){
             verticeAtual++;
         }
-        System.out.println("Andou: " + verticeAtual);
     }
 }
