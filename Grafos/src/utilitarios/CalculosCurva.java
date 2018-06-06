@@ -7,7 +7,7 @@ import model.Vertice;
 
 public class CalculosCurva {
     
-    private String nome;
+    private final String nome;
     
     private double a;
     private double b;
@@ -16,10 +16,10 @@ public class CalculosCurva {
     private double sen;
     private double cos;
     
-    private double xA;
-    private double xB;
-    private double yA;
-    private double yB;
+    private final double xA;
+    private final double xB;
+    private final double yA;
+    private final double yB;
     private double xO;
     private double yO;
     
@@ -27,7 +27,7 @@ public class CalculosCurva {
     private double yP;
     
     //Nosso comprimento da curva.
-    private double d;
+    private final double d;
     
     public CalculosCurva( Aresta aresta ){
         nome = aresta.getNome();
@@ -72,8 +72,9 @@ public class CalculosCurva {
     }
     
     private void calcularTeta(){
-        if( xA == xB || yA == yB ){
-            teta = 0;
+//        if( xA == xB || yA == yB ){
+        if(  xA == xB ){
+            teta = 90;
         }else{
             double var = ( yA - yB )/( xA - xB );
             teta = Math.atan( Math.toRadians( var ) );
@@ -107,46 +108,46 @@ public class CalculosCurva {
         return yP;
     }
     
-//    public List<Vertice> getPontos(){
-//        double[] valores;
-//        List<Vertice> listaPontos = new ArrayList<>();
-//        
-//        for( int i = 1; i <= ( (int) 2*a); i++ ){
-//            valores = calcular( i );
-//            listaPontos.add(new Vertice("", valores[0],valores[1]) );
-//        }
-//        valores = calcular( 2*a );
-//        listaPontos.add(new Vertice("", valores[0], valores[1]) );
-//        return listaPontos;
-//        
-//    }
-    
     public List<Vertice> getPontos(){
-        double x, y;
-        double ys[] = new double[ (int) a/2 ];
-        Vertice vAux;
-       
-        for( int i = 1; i <= ( (int) a/2 ); i++){
-            ys[ i ] = Math.sqrt( b*b*(1- (i*i)/(a*a) ) ); 
-        }
+        double[] valores;
+        List<Vertice> listaPontos = new ArrayList<>();
         
-        List<Vertice> listaVertices = new ArrayList<>();
-        for( int i = 0; i < ys.length; i++ ){
-            listaVertices.add( new Vertice("", i, ys[i] ) );
+        for( int i = 1; i <= ( (int) 2*a); i++ ){
+            valores = calcular( i );
+            listaPontos.add(new Vertice("", valores[0],valores[1]) );
         }
-        for( int i = 0; i < ys.length; i++){
-            listaVertices.add( new Vertice("", i+a, ys[(int) a-i] ) );
-        }
+        valores = calcular( 2*a );
+        listaPontos.add(new Vertice("", valores[0], valores[1]) );
+        return listaPontos;
         
-        for( int i = 0; i < listaVertices.size(); i++ ){
-            vAux = listaVertices.get(i);
-            x = vAux.getValorX();
-            y = vAux.getValorY();
-            vAux.setValorX( x*cos + y*sen+ xA );
-            vAux.setValorY( -1*x*sen + y*cos + yA );
-        }
-        return listaVertices;
     }
+    
+//    public List<Vertice> getPontos(){
+//        double x, y;
+//        double ys[] = new double[ (int) a/2 ];
+//        Vertice vAux;
+//       
+//        for( int i = 1; i <= ( (int) a/2 ); i++){
+//            ys[ i ] = Math.sqrt( b*b*(1- (i*i)/(a*a) ) ); 
+//        }
+//        
+//        List<Vertice> listaVertices = new ArrayList<>();
+//        for( int i = 0; i < ys.length; i++ ){
+//            listaVertices.add( new Vertice("", i, ys[i] ) );
+//        }
+//        for( int i = 0; i < ys.length; i++){
+//            listaVertices.add( new Vertice("", i+a, ys[(int) a-i] ) );
+//        }
+//        
+//        for( int i = 0; i < listaVertices.size(); i++ ){
+//            vAux = listaVertices.get(i);
+//            x = vAux.getValorX();
+//            y = vAux.getValorY();
+//            vAux.setValorX( x*cos + y*sen+ xA );
+//            vAux.setValorY( -1*x*sen + y*cos + yA );
+//        }
+//        return listaVertices;
+//    }
       
     private double[] calcular(double xValor){
         double[] valores = new double[2];

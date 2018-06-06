@@ -85,7 +85,7 @@ public class TelaTeste extends javax.swing.JFrame {
 
 
     public static void main(String args[]) {
-        final int mul = 20;
+        final int mul = 100;
         Individuo i1, i2;
         Aresta a1, a2, a3, a4, a5;
         Vertice v1, v2, v3, v4, v5, v6;
