@@ -7,9 +7,14 @@ import model.Vertice;
 
 public class CalculosCurva {
     
+    private String nome;
+    
     private double a;
     private double b;
+    
     private double teta;
+    private double sen;
+    private double cos;
     
     private double xA;
     private double xB;
@@ -25,15 +30,16 @@ public class CalculosCurva {
     private double d;
     
     public CalculosCurva( Aresta aresta ){
+        nome = aresta.getNome();
         xA = aresta.getOrigem().getValorX();
         xB = aresta.getDestino().getValorX();
         yA = aresta.getOrigem().getValorY();
         yB = aresta.getDestino().getValorY();
         d  = aresta.getComprimento();
         
+        calcularOrigem();
         calcularValorA();
         calcularValorB();
-        calcularOrigem();
         calcularTeta();
         calcularPontoMaximo();
         
@@ -41,9 +47,9 @@ public class CalculosCurva {
     
     private void calcularValorA(){
         double aux = 
-            Math.pow(( xA + xB ) / 2 - xA, 2) +
-            Math.pow(( yA + yB ) / 2 - yA, 2);
-        a = Math.sqrt( aux );
+            Math.pow(xB - xA, 2) +
+            Math.pow(yB - yA, 2);
+        a = Math.sqrt( aux )/2;
 //        System.out.println( "a: " + a);
     }
     
@@ -59,45 +65,38 @@ public class CalculosCurva {
     }
     
     private void calcularOrigem(){
-        xO = ( xA - xB)/2;
-        yO = ( yA - yB)/2;
+        xO = (xA + xB)/2;
+        yO = (yA + yB)/2;
 //        System.out.println("xO: " + xO);
 //        System.out.println("yO: " + yO);
     }
     
     private void calcularTeta(){
-        double var = ( yB - yA )/( xB - xA );
-        teta = Math.atan( Math.toRadians( var ) );
+        if( xA == xB || yA == yB ){
+            teta = 0;
+        }else{
+            double var = ( yA - yB )/( xA - xB );
+            teta = Math.atan( Math.toRadians( var ) );
+        }
+        sen = Math.sin( Math.toRadians(teta) );
+        cos = Math.cos( Math.toRadians(teta) );
 //        System.out.println("teta: " + teta);
     }
     
     private void calcularPontoMaximo(){
-        double x = xO;
-        double y = Math.sqrt( b*b*(1- (xO*xO)/(a*a) ) );
+        double x = xO-xA;
+        double y = Math.sqrt( b*b*(1- (x*x)/(a*a) ) );
 //        double y = b*Math.sin( Math.toRadians( x/(2*a) ) );
-        double sen  = Math.sin( Math.toRadians( teta ) );
-        double cos  = Math.cos( Math.toRadians( teta ) );
         
-        xP = x*cos - y*sen + xA;
-        yP = x*sen + y*cos + yA;
+//        x = x*cos - y*sen + xA;
+//        y = x*sen + y*cos + yA;
+        x = x*cos + y*sen + xA;
+        y = -1*x*sen + y*cos + yA;
+        xP = x;
+        yP = y;
         
 //        System.out.println( "xP: " + xP);
 //        System.out.println( "yP: " + yP);
-    }
-    
-    private double[] calcular(double xValor){
-        double[] valores = new double[2];
-        
-        double x = xValor;
-        double y = Math.sqrt( b*b*(1- (x*x)/(a*a) ) );
-        double sen  = Math.sin( Math.toRadians( teta ) );
-        double cos  = Math.cos( Math.toRadians( teta ) );
-        
-//        valores[0] = x;
-//        valores[1] = y;
-        valores[0] = x*cos - y*sen + xA;
-        valores[1] = x*sen + y*cos + yA;
-        return valores;
     }
     
     public double getValorXmaximo(){
@@ -108,17 +107,55 @@ public class CalculosCurva {
         return yP;
     }
     
+//    public List<Vertice> getPontos(){
+//        double[] valores;
+//        List<Vertice> listaPontos = new ArrayList<>();
+//        
+//        for( int i = 1; i <= ( (int) 2*a); i++ ){
+//            valores = calcular( i );
+//            listaPontos.add(new Vertice("", valores[0],valores[1]) );
+//        }
+//        valores = calcular( 2*a );
+//        listaPontos.add(new Vertice("", valores[0], valores[1]) );
+//        return listaPontos;
+//        
+//    }
+    
     public List<Vertice> getPontos(){
-        double fim = 2*a;
-        double[] valores;
-        List<Vertice> listaPontos = new ArrayList<>();
-        for( int i = 1; i <= ( (int) fim); i++ ){
-            valores = calcular( i );
-            listaPontos.add(new Vertice("", valores[0],valores[1]) );
+        double x, y;
+        double ys[] = new double[ (int) a/2 ];
+        Vertice vAux;
+       
+        for( int i = 1; i <= ( (int) a/2 ); i++){
+            ys[ i ] = Math.sqrt( b*b*(1- (i*i)/(a*a) ) ); 
         }
-        valores = calcular( fim );
-        listaPontos.add(new Vertice("", valores[0], valores[1]) );
-        return listaPontos;
         
+        List<Vertice> listaVertices = new ArrayList<>();
+        for( int i = 0; i < ys.length; i++ ){
+            listaVertices.add( new Vertice("", i, ys[i] ) );
+        }
+        for( int i = 0; i < ys.length; i++){
+            listaVertices.add( new Vertice("", i+a, ys[(int) a-i] ) );
+        }
+        
+        for( int i = 0; i < listaVertices.size(); i++ ){
+            vAux = listaVertices.get(i);
+            x = vAux.getValorX();
+            y = vAux.getValorY();
+            vAux.setValorX( x*cos + y*sen+ xA );
+            vAux.setValorY( -1*x*sen + y*cos + yA );
+        }
+        return listaVertices;
+    }
+      
+    private double[] calcular(double xValor){
+        double[] valores = new double[2];
+        
+        double x = xValor;
+        double y = Math.sqrt( b*b*(1- (x*x)/(a*a) ) );
+
+        valores[0] = x*cos + y*sen+ xA;
+        valores[1] = -1*x*sen + y*cos + yA;
+        return valores;
     }
 }

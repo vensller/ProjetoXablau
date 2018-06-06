@@ -17,7 +17,7 @@ public class PainelTeste extends javax.swing.JPanel {
     public void paintComponent( Graphics g ){
         super.paintComponent( g );
         for( Desenhavel d : listaDesenhaveis ){
-            d.desenhar(g);
+            d.desenhar(g.create());
         }
     }
 
@@ -41,7 +41,6 @@ public class PainelTeste extends javax.swing.JPanel {
         Thread t = new Thread(){
             @Override
             public void run(){
-                int contador = 0;
                 while( houverPontos() ){
                     try {
                         Thread.sleep(100);
@@ -50,7 +49,6 @@ public class PainelTeste extends javax.swing.JPanel {
                     }
                     repaint();
 //                    System.out.println("Contador: " + contador );
-                    contador++;
                     for( Desenhavel d: listaDesenhaveis){
                         d.andar();
                     }

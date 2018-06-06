@@ -22,6 +22,12 @@ public class Vertice implements Desenhavel {
     @Override
     public void desenhar(java.awt.Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
+        
+        String nome = this.nome;
+        double x, y;
+        x = valorX - RAIO/2;
+        y = valorY - RAIO/2;
+        
         Ellipse2D.Double circle = new Ellipse2D.Double(
             valorX - RAIO / 2, valorY - RAIO / 2, RAIO, RAIO);
         g2.setColor(Color.BLUE);
