@@ -53,6 +53,7 @@ public class PainelTeste extends javax.swing.JPanel {
                         d.andar();
                     }
                 }
+                System.out.println("ACABOU OS PONTOS");
             }
         };
         t.start();
@@ -61,7 +62,7 @@ public class PainelTeste extends javax.swing.JPanel {
     private boolean houverPontos() {
         boolean existemPontos = true;
         for( Desenhavel d : listaDesenhaveis ){
-            existemPontos = existemPontos && d.existemPontos();
+            existemPontos = existemPontos || d.existemPontos();
         }
         return existemPontos;
     }

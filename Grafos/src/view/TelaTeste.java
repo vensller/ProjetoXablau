@@ -2,6 +2,7 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Aresta;
 import model.Desenhavel;
 import model.Individuo;
@@ -85,6 +86,10 @@ public class TelaTeste extends javax.swing.JFrame {
 
 
     public static void main(String args[]) {
+        
+        double m = 1;
+        double angulo = Math.atan(Math.toDegrees(m));
+        JOptionPane.showInputDialog("M: " + m + ", Angulo: " + angulo);
         final int mul = 100;
         Individuo i1, i2;
         Aresta a1, a2, a3, a4, a5;

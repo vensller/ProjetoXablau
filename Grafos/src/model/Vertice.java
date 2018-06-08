@@ -96,7 +96,7 @@ public class Vertice implements Desenhavel {
 
     @Override
     public boolean existemPontos() {
-        return true;
+        return false;
     }
 
     

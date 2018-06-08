@@ -121,7 +121,7 @@ public class Aresta implements Desenhavel {
 
     @Override
     public boolean existemPontos() {
-        return true;
+        return false;
     }
 
     private boolean possuiComprimentoPossivel(Vertice vertice01, Vertice vertice02, double comprimento) {
