@@ -60,7 +60,7 @@ public class PainelTeste extends javax.swing.JPanel {
     }
 
     private boolean houverPontos() {
-        boolean existemPontos = true;
+        boolean existemPontos = false;
         for( Desenhavel d : listaDesenhaveis ){
             existemPontos = existemPontos || d.existemPontos();
         }

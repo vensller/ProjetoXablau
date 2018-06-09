@@ -37,7 +37,7 @@ public class Individuo implements Desenhavel {
         g2.fill(circle);
         
         if( nome.equals("i1") ){
-            System.out.println( pontoAtual.getStringParaDocumento() );
+            System.out.println( "Nome: " + nome + ", " + pontoAtual.getStringParaDocumento() );
         }
     }
 

@@ -72,33 +72,25 @@ public class CalculosCurva {
     }
 
     private void calcularTeta() {
-        if( xA < xB && yA == yB ){
-            teta = 0;
-        }else if( xA == xB && yA > yB ){
+        if( xA == xB ){
             teta = 90;
-        }else if( xA > xB && yA == yB ){
-            teta = 180;
-        }else if( xA == xB && yA < yB ){
-            teta = 270;
         }else{
-            double var = (yA - yB) / (xA - xB);
-
-
-            teta = Math.atan(Math.toRadians(var));
-
+            double var = (yB - yA) / (xB - xA);
+            teta = Math.toDegrees( Math.atan(var) );
         }
+//        if( xA < xB && yA == yB ){
+//            teta = 0;
+//        }else if( xA == xB && yA > yB ){
+//            teta = 90;
+//        }else if( xA > xB && yA == yB ){
+//            teta = 180;
+//        }else if( xA == xB && yA < yB ){
+//            teta = 270;
+//        }else{
+//            
+//
+//        }
 
-        if (xA == xB && yA > yB) {
-            teta = 270;
-        } else if (xA == xB && yA < yB) {
-            teta = 90;
-        } else if (xA > xB && yA == yB) {
-            teta = 180;
-        } else if (xA < xB && yA == yB) {
-            teta = 00;
-        } else {
-            
-        }
         sen = Math.sin(Math.toRadians(teta));
         cos = Math.cos(Math.toRadians(teta));
 //        System.out.println("teta: " + teta);
@@ -106,11 +98,9 @@ public class CalculosCurva {
 
     private void calcularPontoMaximo() {
         double x = xO - xA;
-        double y = Math.sqrt(b * b * (1 - (x * x) / (a * a)));
-//        double y = b*Math.sin( Math.toRadians( x/(2*a) ) );
+//        double y = Math.sqrt(b * b * (1 - (x * x) / (a * a)));
+        double y = b*Math.sin( Math.toRadians( x/(2*a) ) );
 
-//        x = x*cos - y*sen + xA;
-//        y = x*sen + y*cos + yA;
         x = x * cos - y * sen + xA;
         y = x * sen + y * cos + yA;
         xP = x;

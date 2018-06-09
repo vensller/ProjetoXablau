@@ -86,10 +86,6 @@ public class TelaTeste extends javax.swing.JFrame {
 
 
     public static void main(String args[]) {
-        
-        double m = 1;
-        double angulo = Math.atan(Math.toDegrees(m));
-        JOptionPane.showInputDialog("M: " + m + ", Angulo: " + angulo);
         final int mul = 100;
         Individuo i1, i2;
         Aresta a1, a2, a3, a4, a5;
@@ -98,7 +94,7 @@ public class TelaTeste extends javax.swing.JFrame {
         
         v1 = new Vertice("v1", 2*mul, 1*mul);
         v2 = new Vertice("v2", 2*mul, 2*mul);
-        v3 = new Vertice("v3", 1*mul, 1.5*mul);
+        v3 = new Vertice("v3", 1*mul, 2.5*mul);
         v4 = new Vertice("v4", 2*mul, 3*mul);
         v5 = new Vertice("v5", 3*mul, 2*mul);
         v6 = new Vertice("v6", 3*mul, 1*mul);
@@ -106,7 +102,7 @@ public class TelaTeste extends javax.swing.JFrame {
         a1 = new Aresta( v1, v2, 1*mul, true, "a1");
         listaDesenhaveis.add( a1 );
         
-        a2 = new Aresta( v3, v2, 2*mul, true, "a2");
+        a2 = new Aresta( v3, v2, 5*mul, true, "a2");
         listaDesenhaveis.add( a2 );
         
         a3 = new Aresta( v4, v2, 1*mul, true, "a3");
