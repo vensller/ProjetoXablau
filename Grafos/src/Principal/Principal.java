@@ -16,9 +16,7 @@ public class Principal {
 
     public static void main(String args[]) {
         TelaInicial telaInicial = new TelaInicial();
-        telaInicial.setVisible(true);
-
-        teste();
+        telaInicial.setVisible(true);        
     }
 
     private static void teste() {
@@ -62,7 +60,7 @@ public class Principal {
 //        m.addDesenhavel(a7);
 //        m.addDesenhavel(a8);
 //        m.addDesenhavel( a4 );
-            m.setListaDesenaveis(new utilitarios.OperadorArquivos("teste.txt").ler());
+            m.setListaDesenhaveis(new utilitarios.OperadorArquivos("teste.txt").ler());
         } catch (Exception ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }

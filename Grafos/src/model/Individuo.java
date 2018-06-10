@@ -23,21 +23,23 @@ public class Individuo implements Desenhavel {
 
     @Override
     public void desenhar(java.awt.Graphics g) {
-        Vertice pontoAtual = listaVerticesCaminho.get( verticeAtual );
-        Graphics2D g2 = (Graphics2D) g;
-        
-        String nome = this.nome;
-        double x, y;
-        x = pontoAtual.getValorX() - RAIO/2;
-        y = pontoAtual.getValorY() - RAIO/2;
-        
-        Ellipse2D.Double circle = new Ellipse2D.Double(
-           pontoAtual.getValorX()-RAIO/2, pontoAtual.getValorY()-RAIO/2, RAIO, RAIO);
-        g2.setColor(Color.red);
-        g2.fill(circle);
-        
-        if( nome.equals("i1") ){
-            System.out.println( "Nome: " + nome + ", " + pontoAtual.getStringParaDocumento() );
+        if (listaVerticesCaminho != null){
+            Vertice pontoAtual = listaVerticesCaminho.get( verticeAtual );
+            Graphics2D g2 = (Graphics2D) g;
+
+            String nome = this.nome;
+            double x, y;
+            x = pontoAtual.getValorX() - RAIO/2;
+            y = pontoAtual.getValorY() - RAIO/2;
+
+            Ellipse2D.Double circle = new Ellipse2D.Double(
+               pontoAtual.getValorX()-RAIO/2, pontoAtual.getValorY()-RAIO/2, RAIO, RAIO);
+            g2.setColor(Color.red);
+            g2.fill(circle);
+
+            if( nome.equals("i1") ){
+                System.out.println( "Nome: " + nome + ", " + pontoAtual.getStringParaDocumento() );
+            }
         }
     }
 

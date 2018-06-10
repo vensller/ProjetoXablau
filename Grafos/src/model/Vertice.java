@@ -11,6 +11,7 @@ public class Vertice implements Desenhavel {
     private String nome;
     private double valorX;
     private double valorY;
+    private boolean pontoEncontro;
 
     @Override
     public String getStringParaDocumento() {
@@ -30,7 +31,11 @@ public class Vertice implements Desenhavel {
         
         Ellipse2D.Double circle = new Ellipse2D.Double(
             valorX - RAIO / 2, valorY - RAIO / 2, RAIO, RAIO);
-        g2.setColor(Color.BLUE);
+        
+        if (isPontoEncontro())
+            g2.setColor(Color.ORANGE);
+        else g2.setColor(Color.BLUE);
+        
         g2.fill(circle);
     }
 
@@ -38,6 +43,7 @@ public class Vertice implements Desenhavel {
         this.nome = nome;
         this.valorX = valorX;
         this.valorY = valorY;
+        this.pontoEncontro = false;
     }
 
     @Override
@@ -68,6 +74,14 @@ public class Vertice implements Desenhavel {
     public void setValorY(double valorY) {
         this.valorY = valorY;
     }
+
+    public boolean isPontoEncontro() {
+        return pontoEncontro;
+    }
+
+    public void setPontoEncontro(boolean pontoEncontro) {
+        this.pontoEncontro = pontoEncontro;
+    }   
 
     @Override
     public boolean equals(Object obj) {

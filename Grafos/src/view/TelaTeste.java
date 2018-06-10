@@ -128,7 +128,7 @@ public class TelaTeste extends javax.swing.JFrame {
         listaDesenhaveis.add( v6 );
         
         Mapa mp = new Mapa(200, 200);
-        mp.setListaDesenaveis(listaDesenhaveis);
+        mp.setListaDesenhaveis(listaDesenhaveis);
         
         FloydWarshall fw = new FloydWarshall(mp);
         Vertice solucao = fw.calcularSolucao();

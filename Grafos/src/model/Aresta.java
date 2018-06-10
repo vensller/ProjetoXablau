@@ -49,9 +49,9 @@ public class Aresta implements Desenhavel {
 
     public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {
         if( possuiComprimentoPossivel( vertice01, vertice02, comprimento ) ){
-            throw new RuntimeException("Comprimento para a aresta <" 
-                + (!nome.equals("")?nome:"nomeNulo") + "> é menor que a distância em l"
-                + "inha reta dos pontos de origem e destino");
+//            throw new RuntimeException("Comprimento para a aresta <" 
+//                + (!nome.equals("")?nome:"nomeNulo") + "> é menor que a distância em l"
+//                + "inha reta dos pontos de origem e destino");
         }
         
         this.origem = vertice01;

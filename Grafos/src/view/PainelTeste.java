@@ -17,7 +17,7 @@ public class PainelTeste extends javax.swing.JPanel {
     public void paintComponent( Graphics g ){
         super.paintComponent( g );
         for( Desenhavel d : listaDesenhaveis ){
-            d.desenhar(g.create());
+            d.desenhar(g);
         }
     }
 

@@ -109,11 +109,13 @@ public class Dijkstra {
         }
     }    
     
-    private Aresta retornaAresta(Vertice vertice1, Vertice vertice2){
+    private Aresta retornaAresta(Vertice origem, Vertice destino){
         for (Aresta aresta : mapa.getArestas()){
-            if ((aresta.getOrigem().equals(vertice1) && aresta.getDestino().equals(vertice2))
-             || (aresta.getDestino().equals(vertice1) && aresta.getOrigem().equals(vertice2))){
-                return aresta;
+            if ((aresta.getOrigem().equals(origem) && aresta.getDestino().equals(destino))
+             || (aresta.getDestino().equals(origem) && aresta.getOrigem().equals(destino))){
+                if (aresta.getOrigem().equals(origem))
+                    return aresta;
+                else return new Aresta(origem, destino, aresta.getComprimento(), aresta.isBidirecional(), aresta.getNome());
             }
         }
         return null;

@@ -35,16 +35,16 @@ public class ControllerMapa {
         operadorArquivo = new OperadorArquivos(nomeArquivo);     
         operador = new OperadorGrafo(mapa);
         try{
-            this.mapa.setListaDesenaveis(operadorArquivo.ler());
+            this.mapa.setListaDesenhaveis(operadorArquivo.ler());
             this.mapaCarregado = !mapa.getListaDesenhaveis().isEmpty();
             this.notificarCarregamentoMapa();
         }catch (Exception e){
-            this.notificarErroAoCarregarMapa(e.getMessage());
+            this.notificarErroAoCarregarMapa("Ocorreu um erro ao carregar o arquivo, verifique se o padrão do arquivo está correto!");
         }
     }
     
     public void limparMapa(){
-        this.mapa.getListaDesenhaveis().clear();
+        this.mapa.limpaDesenhaveis();
         this.mapaCarregado = false;
         this.operador = null;
         this.notificarLimpezaMapa();
@@ -55,6 +55,7 @@ public class ControllerMapa {
             operador.definirPontoEncontro();
 
             if (operador.getPontoEncontro() != null){
+                operador.getPontoEncontro().setPontoEncontro(true);
                 this.notificarPontoEncontroDefinido(operador.getPontoEncontro().getValorX(), operador.getPontoEncontro().getValorY());
             }
         }
@@ -63,8 +64,15 @@ public class ControllerMapa {
     public void iniciarEncontro(){
         if (operador.getPontoEncontro() != null){
             operador.definirCaminhosIndividuosDestino(operador.getPontoEncontro());
+            notificarCaminhosDefinidos();
         }else {
             this.notificarPontoEncontroNaoDefinido();
+        }
+    }
+    
+    private void notificarCaminhosDefinidos(){
+        for (ObservadorMapa obs : observadores){
+            obs.receberNotificacaoCaminhosDefinidos();
         }
     }
     

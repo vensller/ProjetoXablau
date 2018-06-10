@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMapa{
 
     ControllerMapa controller;
+    PainelTeste painelMapa;
     
     public TelaMapa() {
         initComponents();
@@ -25,7 +26,6 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        painelMapa = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         btnCarregarMapa = new javax.swing.JMenuItem();
@@ -40,19 +40,6 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-
-        painelMapa.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout painelMapaLayout = new javax.swing.GroupLayout(painelMapa);
-        painelMapa.setLayout(painelMapaLayout);
-        painelMapaLayout.setHorizontalGroup(
-            painelMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 549, Short.MAX_VALUE)
-        );
-        painelMapaLayout.setVerticalGroup(
-            painelMapaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
-        );
 
         jMenu2.setText("Opções");
 
@@ -99,11 +86,11 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 549, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelMapa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 380, Short.MAX_VALUE)
         );
 
         pack();
@@ -128,7 +115,7 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     }//GEN-LAST:event_btnCalcularSolucaoActionPerformed
 
     private void btnIniciarEncontroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarEncontroActionPerformed
-        
+        controller.iniciarEncontro();
     }//GEN-LAST:event_btnIniciarEncontroActionPerformed
 
     @Override
@@ -150,10 +137,10 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     public void receberNotificacaoMapaCarregado(boolean temRegistros) {
         if (!temRegistros) JOptionPane.showMessageDialog(this, "Não foram encontrados registros no arquivo escolhido!");
         else {
-           PainelTeste teste = new PainelTeste(controller.getMapa().getListaDesenhaveis());                                 
-           this.add(teste);   
-           this.setContentPane(teste);
-           teste.paintAll(teste.getGraphics());
+           painelMapa = new PainelTeste(controller.getMapa().getListaDesenhaveis());   
+           painelMapa.setSize(this.getSize());
+           this.add(painelMapa);
+           this.setContentPane(painelMapa);
            this.btnCalcularSolucao.setEnabled(true);
            this.btnLimparMapa.setEnabled(true);
            this.btnCarregarMapa.setEnabled(false);
@@ -162,13 +149,21 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     
     @Override
     public void receberNotificacaoPontoEncontroDefinido(double x, double y) {
+        this.getContentPane().repaint();
         JOptionPane.showMessageDialog(this, "O ponto de encontro fica no Vértice com x = " + x + " e y = " + y);
         this.btnIniciarEncontro.setEnabled(true);
+        this.btnCalcularSolucao.setEnabled(false);
     }
     
     @Override
     public void receberNotificacaoPontoEncontroNaoDefinido() {
         JOptionPane.showMessageDialog(this, "O ponto de encontro ainda não foi definido!");
+    }
+    
+    @Override
+    public void receberNotificacaoCaminhosDefinidos(){
+        this.painelMapa.iniciarDesenhos();
+        this.btnIniciarEncontro.setEnabled(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,7 +174,6 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel painelMapa;
     // End of variables declaration//GEN-END:variables
 
   
