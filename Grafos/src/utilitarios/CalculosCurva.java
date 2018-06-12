@@ -12,6 +12,7 @@ public class CalculosCurva {
     private double a;
     private double b;
     
+    private double m;
     private double teta;
     private double sen;
     private double cos;
@@ -34,7 +35,9 @@ public class CalculosCurva {
         xA = aresta.getOrigem().getValorX();
         xB = aresta.getDestino().getValorX();
         yA = aresta.getOrigem().getValorY();
+//        yA = -1 * aresta.getOrigem().getValorY();
         yB = aresta.getDestino().getValorY();
+//        yB = -1 * aresta.getDestino().getValorY();
         d = aresta.getComprimento();
 
         calcularOrigem();
@@ -75,8 +78,8 @@ public class CalculosCurva {
         if( xA == xB ){
             teta = 90;
         }else{
-            double var = (yB - yA) / (xB - xA);
-            teta = Math.toDegrees( Math.atan(var) );
+            m = (yB - yA) / (xB - xA);
+            teta = Math.toDegrees( Math.atan( m ) );
         }
 //        if( xA < xB && yA == yB ){
 //            teta = 0;
@@ -148,11 +151,14 @@ public class CalculosCurva {
         double[] valores = new double[2];
         List<Vertice> listaPontos = new ArrayList<>();
         
-        for (int i = 1; i <= ((int) 2 * a); i++) {
+        calcular( -a, valores);
+        listaPontos.add(new Vertice("", valores[0], valores[1]));
+        
+        for (int i = (int) (-a); i <= ((int) a); i++) {
             calcular(i, valores);
             listaPontos.add(new Vertice("", valores[0], valores[1]));
         }
-        calcular(2 * a, valores);
+        calcular( a, valores);
         listaPontos.add(new Vertice("", valores[0], valores[1]));
 
         return listaPontos;
@@ -167,5 +173,6 @@ public class CalculosCurva {
 
         valores[0] = x * cos - y * sen + xA;
         valores[1] = x * sen + y * cos + yA;
+//        valores[1] = (x * sen + y * cos + yA) * -1;
     }
 }

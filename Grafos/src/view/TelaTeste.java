@@ -102,7 +102,7 @@ public class TelaTeste extends javax.swing.JFrame {
         a1 = new Aresta( v1, v2, 1*mul, true, "a1");
         listaDesenhaveis.add( a1 );
         
-        a2 = new Aresta( v3, v2, 5*mul, true, "a2");
+        a2 = new Aresta( v3, v2, 2*mul, true, "a2");
         listaDesenhaveis.add( a2 );
         
         a3 = new Aresta( v4, v2, 1*mul, true, "a3");
