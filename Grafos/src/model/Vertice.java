@@ -6,7 +6,7 @@ import java.awt.geom.Ellipse2D;
 
 public class Vertice implements Desenhavel {
     
-    private static final int RAIO = 10;
+    private static final int RAIO = 5;
 
     private String nome;
     private double valorX;

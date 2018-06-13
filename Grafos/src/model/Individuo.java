@@ -37,9 +37,6 @@ public class Individuo implements Desenhavel {
             g2.setColor(Color.red);
             g2.fill(circle);
 
-            if( nome.equals("i1") ){
-                System.out.println( verticeAtual + "-Nome: " + nome + ", " + pontoAtual.getStringParaDocumento() );
-            }
         }
     }
 

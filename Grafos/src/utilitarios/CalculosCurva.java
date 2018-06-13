@@ -34,10 +34,12 @@ public class CalculosCurva {
         nome = aresta.getNome();
         xA = aresta.getOrigem().getValorX();
         xB = aresta.getDestino().getValorX();
+        
         yA = aresta.getOrigem().getValorY();
 //        yA = -1 * aresta.getOrigem().getValorY();
         yB = aresta.getDestino().getValorY();
 //        yB = -1 * aresta.getDestino().getValorY();
+        
         d = aresta.getComprimento();
 
         calcularOrigem();
@@ -100,15 +102,15 @@ public class CalculosCurva {
     }
 
     private void calcularPontoMaximo() {
-        double x = xO - xA;
+        double x = 0 /* xO - xA*/;
         double y = Math.sqrt(b * b * (1 - (x * x) / (a * a)));
 //        double y = b*Math.sin( Math.toRadians( x/(2*a) ) );
 
-        double xN = x * cos - y * sen + xA;
-        double yN = x * sen + y * cos + yA;
+        double xN = x * cos - y * sen + xO;
+        double yN = x * sen + y * cos + yO;
         xP = xN;
         yP = yN;
-
+        System.out.println("pm " + nome + "[" + xP + "," + yP + "]");
 //        System.out.println( "xP: " + xP);
 //        System.out.println( "yP: " + yP);
     }
@@ -166,13 +168,15 @@ public class CalculosCurva {
     }
 
     private void calcular(double xValor, double[] valores) {
-
         double x = xValor;
 //        double y = b * Math.sin(Math.toRadians(x / (2* a)));
         double y = Math.sqrt( b*b*(1- (x*x)/(a*a) ) );
-
-        valores[0] = x * cos - y * sen + xA;
-        valores[1] = x * sen + y * cos + yA;
+        
+//        System.out.println( x + "," + -y );
+        valores[0] = x * cos - y * sen + xO;
+        valores[1] = x * sen + y * cos + yO;
 //        valores[1] = (x * sen + y * cos + yA) * -1;
+        System.out.println( (valores[0]) + "," + (valores[1]) );
     }
+
 }
