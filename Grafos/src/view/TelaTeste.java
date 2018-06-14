@@ -86,7 +86,7 @@ public class TelaTeste extends javax.swing.JFrame {
 
 
     public static void main(String args[]) {
-        final int mul = 100;
+        final int mul = 40;
         Individuo i1, i2;
         Aresta a1, a2, a3, a4, a5;
         Vertice v1, v2, v3, v4, v5, v6;
@@ -94,9 +94,9 @@ public class TelaTeste extends javax.swing.JFrame {
         
         v1 = new Vertice("v1", 2*mul, 1*mul);
         v2 = new Vertice("v2", 2*mul, 2*mul);
-        v3 = new Vertice("v3", 1*mul, 2.5*mul);
+        v3 = new Vertice("v3", 1*mul, 2*mul);
         v4 = new Vertice("v4", 2*mul, 3*mul);
-        v5 = new Vertice("v5", 3*mul, 2*mul);
+        v5 = new Vertice("v5", 3*mul, 3*mul);
         v6 = new Vertice("v6", 3*mul, 1*mul);
         
         a1 = new Aresta( v1, v2, 1*mul, true, "a1");

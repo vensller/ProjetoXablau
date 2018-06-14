@@ -79,22 +79,20 @@ public class CalculosCurva {
     private void calcularTeta() {
         if( xA == xB ){
             teta = 90;
-        }else{
+        }else{            
             m = (yB - yA) / (xB - xA);
-            teta = Math.toDegrees( Math.atan( m ) );
+            
+            if( m == -0 ){
+                m = 0;
+            }
+            
+            teta += Math.toDegrees( Math.atan( m ) );
+            
+            if( xA > xB ){
+                teta += 180;
+            }
+            
         }
-//        if( xA < xB && yA == yB ){
-//            teta = 0;
-//        }else if( xA == xB && yA > yB ){
-//            teta = 90;
-//        }else if( xA > xB && yA == yB ){
-//            teta = 180;
-//        }else if( xA == xB && yA < yB ){
-//            teta = 270;
-//        }else{
-//            double var = (yB - yA) / (xB - xA);
-//            teta = Math.toDegrees(Math.atan(var));
-//        }
 
         sen = Math.sin(Math.toRadians(teta));
         cos = Math.cos(Math.toRadians(teta));
@@ -175,7 +173,7 @@ public class CalculosCurva {
 //        System.out.println( x + "," + -y );
         valores[0] = x * cos - y * sen + xO;
         valores[1] = x * sen + y * cos + yO;
-//        valores[1] = (x * sen + y * cos + yA) * -1;
+//        valores[1] = (x * sen + y * cos + yO) * -1;
         System.out.println( (valores[0]) + "," + (valores[1]) );
     }
 
