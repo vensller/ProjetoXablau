@@ -164,6 +164,18 @@ public class CalculosCurva {
         return listaPontos;
 
     }
+    
+    public double[] getCoordenadasPontos(){
+        List<Vertice> listaPontos = getPontos();
+        double coordenadasPontos[] = new double[listaPontos.size()*2];
+        
+        for(int i = 0; i < listaPontos.size(); i++){
+            coordenadasPontos[2*i] = listaPontos.get( i ).getValorX();
+            coordenadasPontos[2*i+1] = listaPontos.get( i ).getValorY();
+        }
+        
+        return coordenadasPontos;
+    }
 
     private void calcular(double xValor, double[] valores) {
         double x = xValor;

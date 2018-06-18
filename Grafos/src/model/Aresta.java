@@ -42,6 +42,10 @@ public class Aresta implements Desenhavel {
             cc.getValorXmaximo(), cc.getValorYMaximo(),
             destino.getValorX(), destino.getValorY()
         );
+        
+//        double[] pontos = cc.getCoordenadasPontos();
+//        System.out.println(">>>>>>>>>>>>>>>>>>>>"+ pontos.length);
+//        q.setCurve( pontos, pontos.length-3);
         g2.draw(q);
 //        origem.desenhar(g.create());
 //        destino.desenhar(g.create());
