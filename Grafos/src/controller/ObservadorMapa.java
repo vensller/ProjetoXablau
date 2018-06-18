@@ -12,4 +12,5 @@ public interface ObservadorMapa {
     void receberNotificacaoPontoEncontroDefinido(double x, double y);
     void receberNotificacaoPontoEncontroNaoDefinido();
     void receberNotificacaoCaminhosDefinidos();
+    void receberNotificacaoErroCalcularPontoEncontro();
 }

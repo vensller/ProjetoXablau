@@ -52,12 +52,15 @@ public class ControllerMapa {
     
     public void calcularPontoEncontro(){
         if (!mapa.getVertices().isEmpty()){
-            operador.definirPontoEncontro();
-
-            if (operador.getPontoEncontro() != null){
-                operador.getPontoEncontro().setPontoEncontro(true);
-                this.notificarPontoEncontroDefinido(operador.getPontoEncontro().getValorX(), operador.getPontoEncontro().getValorY());
-            }
+            try{
+                operador.definirPontoEncontro();
+                if (operador.getPontoEncontro() != null){
+                    operador.getPontoEncontro().setPontoEncontro(true);
+                    this.notificarPontoEncontroDefinido(operador.getPontoEncontro().getValorX(), operador.getPontoEncontro().getValorY());
+                }
+            }catch(Exception e){
+                this.notificarErroAoDefinirPontoEncontro();
+            }            
         }
     }
     
@@ -67,6 +70,12 @@ public class ControllerMapa {
             notificarCaminhosDefinidos();
         }else {
             this.notificarPontoEncontroNaoDefinido();
+        }
+    }
+    
+    private void notificarErroAoDefinirPontoEncontro(){
+        for (ObservadorMapa obs: observadores){
+            obs.receberNotificacaoErroCalcularPontoEncontro();
         }
     }
     

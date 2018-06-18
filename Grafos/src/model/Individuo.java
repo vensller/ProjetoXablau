@@ -23,7 +23,7 @@ public class Individuo implements Desenhavel {
 
     @Override
     public void desenhar(java.awt.Graphics g) {
-        if (listaVerticesCaminho != null){
+        if ((listaVerticesCaminho != null)&&(!listaVerticesCaminho.isEmpty())){
             Vertice pontoAtual = listaVerticesCaminho.get( verticeAtual );
             Graphics2D g2 = (Graphics2D) g;
 
@@ -78,6 +78,8 @@ public class Individuo implements Desenhavel {
 
     private void calcularCaminho() {
         listaVerticesCaminho = caminho.calcularCaminho();
+        if (listaVerticesCaminho.isEmpty())
+            listaVerticesCaminho.add(localizacao);
     }
     
     @Override

@@ -54,16 +54,25 @@ public class Dijkstra {
         return null;
     }
     
-    private void criaListaMenorCaminho(ListaCaminho caminho, Vertice destino, Vertice origem){    
+    private void criaListaMenorCaminho(ListaCaminho caminho, Vertice destino, Vertice origem){         
+        if (destino.getNome().equals(origem.getNome())){
+            System.out.println("");
+        }
         List<Integer> caminhoVert = new ArrayList<>();
         int verticeDestino = mapa.getVertices().indexOf(destino);        
         caminhoVert.add(verticeDestino);        
         adicionaCaminhoRecursivo(caminhoVert, verticeDestino, mapa.getVertices().indexOf(origem));
         for (int i = caminhoVert.size() - 1; i > 0; i --){
             No novoNo = new No(retornaAresta(mapa.getVertices().get(caminhoVert.get(i)), mapa.getVertices().get(caminhoVert.get(i - 1))), null);
-            caminho.Adicionar(novoNo);
+            if (novoNo.getAresta() != null)
+                caminho.Adicionar(novoNo);
         }
-        System.out.println(caminho.listar());
+        try{            
+                System.out.println(caminho.listar());
+        }catch(Exception e){
+            System.out.println(destino.getNome() + " " + origem.getNome());
+        }
+        
     }    
     
     private void adicionaCaminhoRecursivo(List<Integer> caminho, int vertice, int verticeParada){

@@ -166,6 +166,12 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
         this.btnIniciarEncontro.setEnabled(false);
     }
     
+    @Override
+    public void receberNotificacaoErroCalcularPontoEncontro(){
+        JOptionPane.showMessageDialog(this, "Não é possível calcular o ponto de encontro, o mapa será limpo, portanto verifique o arquivo!");
+        controller.limparMapa();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCalcularSolucao;
     private javax.swing.JMenuItem btnCarregarMapa;
