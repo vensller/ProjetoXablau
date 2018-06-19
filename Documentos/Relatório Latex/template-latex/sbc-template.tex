@@ -10,7 +10,7 @@
      
 \sloppy
 
-\title{Relatório}
+\title{Projeto Xablau}
 
 \author{Douglas Martins \inst{1} Ivens Diego Müller\inst{2} Tiago Funk\inst{3} }
 
@@ -25,6 +25,30 @@
 \maketitle
 
 \section{Informações Gerais}
+\paragraph{}
+	O Projeto Xablau tem como objetivo, a partir de um grafo informado, no qual o grafo deve contar a identificação das arestas, vértices e indivíduos que estarão posicionados em cima de um vértice, definir o ponto de encontro onde o custo total de movimentação dos indivíduos é o mínimo possível.
+
+\paragraph{}
+	Para isso, o usuário que utilizará o software deve, por meio de um documento de texto com um padrão pré definido, definir os dados referente ao grafo, onde os dados devem ser: 
+	\begin{itemize}
+		\item Vértices: contendo um rótulo, um valor para x e um valor para y.
+		\item Arestas: contendo um vértice de origem, um vértice de destino, comprimento, se a aresta é bidirecional e um nome.
+		\item Indivíduos: contendo o vértice de localização e um nome.
+	\end{itemize}
+
+\paragraph{}
+	Com estes dados, a partir do algoritmo de Floyd Warshall, o sistema identificará qual será o vértice de destino de todos os indivíduos. A partir deste vértice, o sistema utilizará o algoritmo de Dijkstra para definir o caminho que cada indivíduo utilizará para chegar ao ponto de encontro.
+
+\paragraph{}
+	O passo a passo para execução do sistema é:
+	\begin{itemize}
+		\item Criar um novo mapa: para isso, o usuário que estiver na tela inicial clicará em Criar Mapa no menu de opções.
+		\item Carregar um mapa pelo arquivo de texto: para isso, após o mapa criado, o usuário clicará no menu de opções e em carregar mapa, escolherá um grafo a partir de um arquivo de textos escolhido, após o mapa definido será desenhado na tela. Sendo as arestas cinzas, os vértices azuis e os indivíduos vermelhos.
+		\item Calcular o ponto de encontro: o usuário clicará em Calcular Ponto de Encontro, e após o cálculo, o sistema informará na tela qual o ponto de encontro e, caso não tenha nenhum indivíduo nesse vértice, o vértice será pintado de laranja.
+		\item Iniciar encontro: o usuário clicará em Iniciar Encontro e, neste momento, o sistema definirá o caminho que cada indivíduo percorrerá e irá mostrar os indivíduos caminhando até o ponto de encontro.
+		\item Limpar o mapa: o usuário clicará em Limpar Mapa e, neste momento, o mapa será limpo, permitindo carregar outro mapa na mesma tela. Porém, caso o usuário queira ter dois mapas abertos ao mesmo tempo, basta o mesmo clicar no menu opções da página inicial e depois em Novo Mapa, assim estarão abertos duas telas com mapas completamente distintos.
+	\end{itemize}
+	
 
 \section{Dijkstra}
 \paragraph{}
