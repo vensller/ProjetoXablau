@@ -137,7 +137,7 @@ public class TelaMapa extends javax.swing.JInternalFrame implements ObservadorMa
     public void receberNotificacaoMapaCarregado(boolean temRegistros) {
         if (!temRegistros) JOptionPane.showMessageDialog(this, "Não foram encontrados registros no arquivo escolhido!");
         else {
-           painelMapa = new PainelTeste(controller.getMapa().getListaDesenhaveis());   
+           painelMapa = new PainelTeste(controller.getMapa().getIndividuos(), controller.getMapa().getVertices(), controller.getMapa().getArestas());   
            painelMapa.setSize(this.getSize());
            this.add(painelMapa);
            this.setContentPane(painelMapa);

@@ -2,7 +2,6 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
 import model.Aresta;
 import model.Desenhavel;
 import model.Individuo;
@@ -17,30 +16,22 @@ import utilitarios.FloydWarshall;
  */
 public class TelaTeste extends javax.swing.JFrame {
     
-    private List<Desenhavel> listaDesenhaveis;
-    
     private PainelTeste desenhar;
 
-    public TelaTeste( List<Desenhavel> listaDesenhaveis ) {
+    public TelaTeste(  List<Individuo> listaIndividuos, List<Vertice> listaVertices, List<Aresta> listaArestas ) {
         initComponents();
         this.setLocationRelativeTo( null );
         this.setSize(600, 600);
         
-        this.listaDesenhaveis = listaDesenhaveis;
-        
 //        JButton botao = new JButton();
         
-        desenhar = new PainelTeste( this.listaDesenhaveis );
+        desenhar = new PainelTeste( listaIndividuos, listaVertices, listaArestas );
         desenhar.setSize( 500, 500 );
         
         this.add( desenhar );
         
     }
 
-    public void setListaDesenhaveis( List<Desenhavel> listaDesenhaveis ){
-        this.listaDesenhaveis = listaDesenhaveis;
-    }
-    
     public void iniciarDesenhos(){
         desenhar.iniciarDesenhos();
     }
@@ -138,7 +129,7 @@ public class TelaTeste extends javax.swing.JFrame {
         i1.setCaminho( d.retornaMenorCaminho( i1.getLocalizacao(), solucao) );
         i2.setCaminho( d.retornaMenorCaminho( i2.getLocalizacao(), solucao) );
         
-        TelaTeste tt = new TelaTeste( listaDesenhaveis );
+        TelaTeste tt = new TelaTeste( mp.getIndividuos(), mp.getVertices(), mp.getArestas() );
         tt.setVisible(true);
         
     }

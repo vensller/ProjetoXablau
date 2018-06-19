@@ -46,7 +46,7 @@ public class Aresta implements Desenhavel {
         for( int i = 0; i < pontos.length; i += 2){
             Ellipse2D.Double circle = new Ellipse2D.Double(
             pontos[i]-RAIO/2, pontos[i+1]-RAIO/2, RAIO, RAIO);
-            g2.setColor(Color.black);
+            g2.setColor(Color.GRAY);
             g2.fill(circle);
         }
         

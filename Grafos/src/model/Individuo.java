@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Individuo implements Desenhavel {
     
-    private final static int RAIO = 10;
+    private final static int RAIO = 12;
     
     private String nome;
     private Vertice localizacao;
@@ -37,6 +37,18 @@ public class Individuo implements Desenhavel {
             g2.setColor(Color.red);
             g2.fill(circle);
 
+        }else if (localizacao != null){
+            Graphics2D g2 = (Graphics2D) g;
+
+            String nome = this.nome;
+            double x, y;
+            x = localizacao.getValorX() - RAIO/2;
+            y = localizacao.getValorY() - RAIO/2;
+
+            Ellipse2D.Double circle = new Ellipse2D.Double(
+               localizacao.getValorX()-RAIO/2, localizacao.getValorY()-RAIO/2, RAIO, RAIO);
+            g2.setColor(Color.red);
+            g2.fill(circle);
         }
     }
 

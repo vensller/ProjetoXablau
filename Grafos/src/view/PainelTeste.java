@@ -2,22 +2,34 @@ package view;
 
 import java.awt.Graphics;
 import java.util.List;
-import model.Desenhavel;
+import model.Aresta;
+import model.Individuo;
+import model.Vertice;
 
 public class PainelTeste extends javax.swing.JPanel {
     
-    private List<Desenhavel> listaDesenhaveis;
+    private List<Individuo> listaIndividuos;
+    private List<Aresta> listaArestas;
+    private List<Vertice> listaVertices;
 
-    public PainelTeste( List<Desenhavel> listaDesenhaveis ) {
+    public PainelTeste( List<Individuo> listaIndividuos, List<Vertice> listaVertices, List<Aresta> listaArestas ) {
         initComponents();
-        this.listaDesenhaveis = listaDesenhaveis;
+        this.listaIndividuos = listaIndividuos;
+        this.listaArestas = listaArestas;
+        this.listaVertices = listaVertices;
     }
     
     @Override
     public void paintComponent( Graphics g ){
         super.paintComponent( g );
-        for( Desenhavel d : listaDesenhaveis ){
-            d.desenhar(g);
+        for (Aresta a : listaArestas){
+            a.desenhar(g);
+        }
+        for (Vertice v : listaVertices){
+            v.desenhar(g);
+        }
+        for (Individuo i : listaIndividuos){
+            i.desenhar(g);
         }
     }
 
@@ -49,8 +61,8 @@ public class PainelTeste extends javax.swing.JPanel {
                     }
                     repaint();
 //                    System.out.println("Contador: " + contador );
-                    for( Desenhavel d: listaDesenhaveis){
-                        d.andar();
+                    for( Individuo i: listaIndividuos){
+                        i.andar();
                     }
                 }
                 System.out.println("ACABOU OS PONTOS");
@@ -61,8 +73,8 @@ public class PainelTeste extends javax.swing.JPanel {
 
     private boolean houverPontos() {
         boolean existemPontos = false;
-        for( Desenhavel d : listaDesenhaveis ){
-            existemPontos = existemPontos || d.existemPontos();
+        for( Individuo i : listaIndividuos ){
+            existemPontos = existemPontos || i.existemPontos();
         }
         return existemPontos;
     }

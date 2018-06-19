@@ -31,6 +31,7 @@ public class Dijkstra {
     
     public ListaCaminho retornaMenorCaminho(Vertice origem, Vertice destino){
         ListaCaminho menorCaminho = null;
+        limpaListasControle();
         this.adicionaVerticesNoGrafo(origem);
         
         while(!naoVisitados.isEmpty()){
@@ -54,10 +55,17 @@ public class Dijkstra {
         return null;
     }
     
-    private void criaListaMenorCaminho(ListaCaminho caminho, Vertice destino, Vertice origem){         
-        if (destino.getNome().equals(origem.getNome())){
-            System.out.println("");
+    private void limpaListasControle(){
+        this.custos = new Double[mapa.getVertices().size()];
+        this.naoVisitados = new ArrayList<>();
+        this.antecessores = new int[mapa.getVertices().size()];    
+        
+        for (int i = 0; i < antecessores.length; i++){
+            antecessores[i] = -1;
         }
+    }
+    
+    private void criaListaMenorCaminho(ListaCaminho caminho, Vertice destino, Vertice origem){         
         List<Integer> caminhoVert = new ArrayList<>();
         int verticeDestino = mapa.getVertices().indexOf(destino);        
         caminhoVert.add(verticeDestino);        
@@ -66,13 +74,7 @@ public class Dijkstra {
             No novoNo = new No(retornaAresta(mapa.getVertices().get(caminhoVert.get(i)), mapa.getVertices().get(caminhoVert.get(i - 1))), null);
             if (novoNo.getAresta() != null)
                 caminho.Adicionar(novoNo);
-        }
-        try{            
-                System.out.println(caminho.listar());
-        }catch(Exception e){
-            System.out.println(destino.getNome() + " " + origem.getNome());
-        }
-        
+        }        
     }    
     
     private void adicionaCaminhoRecursivo(List<Integer> caminho, int vertice, int verticeParada){
