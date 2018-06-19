@@ -1,0 +1,46 @@
+\documentclass[a4paper, 14pt]{article}
+
+\usepackage[portuguese]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{graphicx}
+
+\title{Relatório}
+\date{}
+
+\begin{document}
+	\maketitle
+	\section*{Floyd Warshall}
+	 o algoritmo de Floyd-Warshall é um algoritmo que resolve o problema de calcular o caminho mais curto entre todos os pares de vértices em um grafo orientado (com direção) e valorado (com peso).
+	 O algoritmo de Floyd-Warshall recebe como entrada uma matriz de adjacência que representa um grafo orientado e valorado. O valor de um caminho entre dois vértices é a soma dos valores de todas as arestas ao longo desse caminho. As arestas do grafo podem ter valores negativos, mas o grafo não pode conter nenhum ciclo de valor negativo. O algoritmo calcula, para cada par de vértices, o menor de todos os caminhos entre os vértices. Por exemplo, e no nosso caso, o caminho de menor custo.
+	 
+	 Utilizamos esse algoritmo em nosso trabalho para calcular o ponto de encontro que minimiza a distância que individuos deveriam percorrer pelo grafo para que todos devessem se encontrar em um mesmo ponto.
+	 
+	 Na forma como implementamos ele em nosso trabalho, ao criar a matriz de adjacência, consideramos que vértices adjacentes tem com valor na matriz o peso da aresta entre esses vértices, não sendo adjacentes, colocamos o valor de infinito na matriz, como não existe o valor de infinito em java, então foi inserido o maior valor possível de double na matriz.
+	 
+	 Com essa matriz é realizado o cálculo do algoritmo de floyd warshall, a matriz resultante possue os valores em cada célula que representam a melhor distância entre dois vértices, para achar o vértice que é o resultado final, basta achar a linha da matriz que possue a melhor soma de valores.
+	 
+	 \newpage
+	 \section*{Cálculos matemáticos para desenho do grafo em tela}
+	 No trabalho foi necessário implementar um código para desenhar uma representação do grafo e do individuos que irião se movimentar pelo grafo para mostrar o seu andamento pelo grafo.
+	 
+	 \begin{figure}[!h]
+	 	\centering
+	 	\includegraphics[scale=0.5]{../ImagensRelatorio/Elipse.png}
+	 	\caption{Elipse e suas propriedades}
+	 	\label{elipse}
+	 \end{figure}
+	 
+	 Para desenhar as arestas foi levado em consideração o seguinte raciocínio: toda aresta é considerada como uma semi-elipse, ou seja, apenas como se fosse a metade de uma elipse, aonde uma reta é um caso que o valor de b é igual a zero (ver fígura \ref{elipse}).
+	 
+	 Primeiro é preciso observar que ao inicio teriamos apenas os pontos A e B e o valor do arco entre eles (são esses valores que o usuário vai informar), se por acaso esse valor do arco for maior que a distância em linha reta entre os pontos, será desenhado um arco, e se for igual é desenhada uma linha reta.
+	 
+	 Para iniciar termos a equação da elipse paralela ao eixo abcissas.
+	 
+	 $$ \frac{x^2}{a} + \frac{y^2}{b} = 1 $$
+	 
+	 Temos a equação do perímetro de elipse, a equação que sera apresentada é que apresenta uma aproximação do cálculo com erro de 5\%.
+	 
+	 $$ P = 2\pi\sqrt{\frac{a^2+b^2}{2}} $$
+	 
+	 
+\end{document}
