@@ -1,6 +1,8 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.QuadCurve2D;
 import utilitarios.CalculosCurva;
 
@@ -12,6 +14,8 @@ public class Aresta implements Desenhavel {
     private double comprimento;
     private double excentricidade;
     private boolean bidirecional;
+    
+    private final double RAIO = 3;
 
     @Override
     public String getStringParaDocumento() {
@@ -28,24 +32,30 @@ public class Aresta implements Desenhavel {
         Graphics2D g2 = (Graphics2D) g;
         QuadCurve2D q = new QuadCurve2D.Float();
         
-        String nome = this.nome;
-        double origemX, origemY, maximoX, maximoY, destinoX, destinoY;
-        origemX = origem.getValorX();
-        origemY = origem.getValorY();
-        maximoX = cc.getValorXmaximo();
-        maximoY = cc.getValorYMaximo();
-        destinoX = destino.getValorX();
-        destinoY = destino.getValorY();
+//        String nome = this.nome;
+//        double origemX, origemY, maximoX, maximoY, destinoX, destinoY;
+//        origemX = origem.getValorX();
+//        origemY = origem.getValorY();
+//        maximoX = cc.getValorXmaximo();
+//        maximoY = cc.getValorYMaximo();
+//        destinoX = destino.getValorX();
+//        destinoY = destino.getValorY();
         
-        q.setCurve(
-            origem.getValorX(), origem.getValorY(),
-            cc.getValorXmaximo(), cc.getValorYMaximo(),
-            destino.getValorX(), destino.getValorY()
-        );
+        double[] pontos = cc.getCoordenadasPontos();
         
-//        double[] pontos = cc.getCoordenadasPontos();
-//        System.out.println(">>>>>>>>>>>>>>>>>>>>"+ pontos.length);
-//        q.setCurve( pontos, pontos.length-3);
+        for( int i = 0; i < pontos.length; i += 2){
+            Ellipse2D.Double circle = new Ellipse2D.Double(
+            pontos[i]-RAIO/2, pontos[i+1]-RAIO/2, RAIO, RAIO);
+            g2.setColor(Color.black);
+            g2.fill(circle);
+        }
+        
+//        q.setCurve(
+//            origem.getValorX(), origem.getValorY(),
+//            cc.getValorXmaximo(), cc.getValorYMaximo(),
+//            destino.getValorX(), destino.getValorY()
+//        );
+        
         g2.draw(q);
 //        origem.desenhar(g.create());
 //        destino.desenhar(g.create());

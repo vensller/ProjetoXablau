@@ -39,7 +39,7 @@ public class ControllerMapa {
             this.mapaCarregado = !mapa.getListaDesenhaveis().isEmpty();
             this.notificarCarregamentoMapa();
         }catch (Exception e){
-            this.notificarErroAoCarregarMapa("Ocorreu um erro ao carregar o arquivo, verifique se o padrão do arquivo está correto!");
+            this.notificarErroAoCarregarMapa(e.getMessage());
         }
     }
     

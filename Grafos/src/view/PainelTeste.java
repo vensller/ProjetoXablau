@@ -43,7 +43,7 @@ public class PainelTeste extends javax.swing.JPanel {
             public void run(){
                 while( houverPontos() ){
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(10);
                     } catch (InterruptedException ex) {
                         ex.printStackTrace();
                     }
