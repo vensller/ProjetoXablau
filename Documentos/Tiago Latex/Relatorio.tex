@@ -3,6 +3,10 @@
 \usepackage[portuguese]{babel}
 \usepackage[latin1]{inputenc}
 \usepackage{graphicx}
+\usepackage{amsmath}
+
+%Cria uma novo comando para parenteses que se ajudastam ao tamanho.
+\newcommand{\PC}[1]{\ensuremath{\left(#1\right)}}
 
 \title{Relatório}
 \date{}
@@ -20,7 +24,7 @@
 	 Com essa matriz é realizado o cálculo do algoritmo de floyd warshall, a matriz resultante possue os valores em cada célula que representam a melhor distância entre dois vértices, para achar o vértice que é o resultado final, basta achar a linha da matriz que possue a melhor soma de valores.
 	 
 	 \newpage
-	 \section*{Cálculos matemáticos para desenho do grafo em tela}
+	 \section*{Cálculos matemáticos para desenho do arco em tela}
 	 No trabalho foi necessário implementar um código para desenhar uma representação do grafo e do individuos que irião se movimentar pelo grafo para mostrar o seu andamento pelo grafo.
 	 
 	 \begin{figure}[!h]
@@ -34,13 +38,93 @@
 	 
 	 Primeiro é preciso observar que ao inicio teriamos apenas os pontos A e B e o valor do arco entre eles (são esses valores que o usuário vai informar), se por acaso esse valor do arco for maior que a distância em linha reta entre os pontos, será desenhado um arco, e se for igual é desenhada uma linha reta.
 	 
-	 Para iniciar termos a equação da elipse paralela ao eixo abcissas.
+	 Para iniciar termos a equação da elipse paralela ao eixo das abcissas.
 	 
-	 $$ \frac{x^2}{a} + \frac{y^2}{b} = 1 $$
+	 \begin{equation}
+	 	\frac{x^2}{a} + \frac{y^2}{b} = 1
+	 	\label{equacaoElipse}
+	 \end{equation}
 	 
-	 Temos a equação do perímetro de elipse, a equação que sera apresentada é que apresenta uma aproximação do cálculo com erro de 5\%.
+	 Temos a equação do perímetro de elipse, a equação que sera apresentada é uma que possui aproximação do cálculo com erro de 5\%.
 	 
-	 $$ P = 2\pi\sqrt{\frac{a^2+b^2}{2}} $$
+	 \begin{equation}
+	 	P = 2\pi\sqrt{\frac{a^2+b^2}{2}}
+	 	\label{equacaoPerimetroElipse}
+	 \end{equation}
 	 
+	 Mas como a elipse é possui a caracteristica de ser simétrica, o ponto O é tem as cordenadas dadas pelo ponto médio entre A e B:
 	 
+	 \begin{equation}
+	 	O(\frac{x_a + x_b}{2}, \frac{y_a + y_b}{2})
+	 	\label{equacaoPontoMedio}
+	 \end{equation}
+	 
+	 Assim descobrimos que o valor de a é a distância entre o ponto A entre o ponto O.
+	 
+	 \begin{equation}
+	 	a = \sqrt{(x_o - x_a)^2 + (y_o + y_a)^2}
+	 	\label{equacaoValorA}
+	 \end{equation}
+	 
+	 Agora, levando em conta a equação \ref{equacaoValorA}, podemos calcular o valor de b com a equação \ref{equacaoPerimetroElipse}. Lembrando que o valor do Perímetro é igual a duas vezes o valor do arco que o usuário deverá informar.
+	 
+	 \begin{equation}
+	 	P = 2d
+	 	\label{equacaoPerimetroIgualDuasVezesDistanciaArco}
+	 \end{equation}
+	 
+	 A equação \ref{equacaoPerimetroElipse} fica:
+	 \begin{equation}
+	 	2d = 2\pi\sqrt{\frac{a^2 + b^2}{2}}
+	 	\label{equacaoPerimetroElipseComDistanciaArco}
+	 \end{equation}
+	 
+	 Quando vamos isolar o b na equação \ref{equacaoPerimetroElipseComDistanciaArco} temos:
+	 \begin{equation}
+	 	b=\sqrt{\frac{2d^2}{\pi^2}-a^2}
+	 	\label{equacaoValorBIsolado}
+	 \end{equation}
+	 
+	 Para facilitar na hora de cálcular os pontos, vamos desenhar a elipse na origem do plano cartesiano e vamos realizar uma rotação para deixa-la na inclinação correta e somar as coordenadas originais do centro da elipse para inseri-las no local correto.
+	 
+	 \begin{equation}
+	 \begin{pmatrix}
+	 \cos \theta&-\sin \theta\\
+	 \sin \theta&\cos \theta
+	 \end{pmatrix}
+	 \times
+	 \begin{pmatrix}
+	 x_i\\
+	 y_i
+	 \end{pmatrix}
+	 +
+	 \begin{pmatrix}
+	 x_o\\
+	 y_o
+	 \end{pmatrix}
+	 \label{equacaomatrizRotacao}
+	 \end{equation}
+	 
+	  Lembrando que o valor de do ângulo teta é dado por:
+	  
+	  \begin{equation}
+	  \theta = \arctan \PC{ \frac{y_b - y_a}{x_b - x_a} }
+	  \label{equacaoValorTheta}
+	  \end{equation}
+	  
+	  Que deriva de do cálculo do coeficiente angular (ver equação \ref{equacaoCoeficienteAngularReta} ) da reta (no nosso caso não necessáriamente uma reta, mas podemos apenas considerar para os pontos A e B para achar a inclinação do arco).
+	  
+	  \begin{equation}
+	  	\tan \theta = \frac{y_b - y_a}{x_b - x_a}
+	  	\label{equacaoCoeficienteAngularReta}
+	  \end{equation}
+	  
+	  Para cálcular os pontos no software, iremos ultilizar um laço de repetição para dar os valores de x para no intervalo de -a e a (lembre que estamos cálculando a elipse na origem e depois será feita uma rotação para coloca-la no local correto) e apenas precisamos cálcular o valor de y da coordenada. Isolando y na equação \ref{equacaoElipse} temos:
+	  
+	  \begin{equation}
+	  	y = \sqrt{b^2\PC{1 - \frac{x^2}{a^2}}}
+	  	\label{equacaoElipseComValorYIsolado}
+	  \end{equation}
+	  
+	  Com essas equações podemos cálcular os pontos do arco que deve ser desenhado em tela, e os pontos que indivíduos devem percorrer pelo grafo.
 \end{document}
