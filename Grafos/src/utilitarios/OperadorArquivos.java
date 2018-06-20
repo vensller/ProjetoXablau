@@ -72,6 +72,10 @@ public class OperadorArquivos {
                                 separadorVertice2[i] = separadorVertice2[i].trim();
                             }
 
+                            if((Double.parseDouble(separadorVertice2[1]) < 0) || (Double.parseDouble(separadorVertice2[2]) < 0)){
+                                throw new Exception("Vertices não podem estar em valores X ou Y negativos!");
+                            }
+                            
                             Vertice v = new Vertice(separadorVertice2[0], Double.parseDouble(separadorVertice2[1]), Double.parseDouble(separadorVertice2[2]));
 
                             listaGravaveis.add(v);
@@ -112,7 +116,6 @@ public class OperadorArquivos {
                                     if (separadorAresta2[3].equalsIgnoreCase("true")) {
                                         bidirecional = true;
                                     }
-                                    //A linha abaixo precisa ser revisada para adicionar o bidirecional que ainda não contém no .txt
                                     Aresta a = new Aresta(v1, v2, Double.parseDouble(separadorAresta2[2]), bidirecional, separadorAresta2[4]);
                                     listaGravaveis.add(a);
                                 }
