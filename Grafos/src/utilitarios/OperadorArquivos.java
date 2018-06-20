@@ -160,6 +160,8 @@ public class OperadorArquivos {
             Logger.getLogger(ex.getMessage());
         } catch (IOException ex) {
             Logger.getLogger(ex.getMessage());
+        } catch(Exception e){
+            throw new Exception("Alguns problemas foram detectados na leitura dos dados do arquivo!");
         }
 
         verticesTemp = null;
