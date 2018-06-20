@@ -64,7 +64,11 @@ public class Mapa {
     }
 
     public void setListaDesenhaveis(List<Desenhavel> listaDesenhaveis) {
+        limpaDesenhaveis();
         this.listaDesenhaveis = listaDesenhaveis;
+        getArestas();
+        getIndividuos();
+        getVertices();
     }
     
     public void addDesenhavel(Individuo i){
