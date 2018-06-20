@@ -68,6 +68,10 @@ public class OperadorArquivos {
                             String[] separadorVertice1 = str.split(":");
                             String[] separadorVertice2 = separadorVertice1[1].split(",");
 
+                            for (int i = 0; i < separadorVertice2.length; i++) {
+                                separadorVertice2[i] = separadorVertice2[i].trim();
+                            }
+
                             Vertice v = new Vertice(separadorVertice2[0], Double.parseDouble(separadorVertice2[1]), Double.parseDouble(separadorVertice2[2]));
 
                             listaGravaveis.add(v);
@@ -79,6 +83,10 @@ public class OperadorArquivos {
 
                             String[] separadorAresta1 = str.split(":");
                             String[] separadorAresta2 = separadorAresta1[1].split(",");
+
+                            for (int i = 0; i < separadorAresta2.length; i++) {
+                                separadorAresta2[i] = separadorAresta2[i].trim();
+                            }
 
                             //aresta(vertice01, vetice02, comprimento, nome)
                             Vertice v1 = null;
@@ -101,8 +109,9 @@ public class OperadorArquivos {
                                     throw new Exception("Valores negativos de comprimento não são permitidos!");
                                 } else {
                                     boolean bidirecional = false;
-                                    if(separadorAresta2[3].equalsIgnoreCase("true"))
+                                    if (separadorAresta2[3].equalsIgnoreCase("true")) {
                                         bidirecional = true;
+                                    }
                                     //A linha abaixo precisa ser revisada para adicionar o bidirecional que ainda não contém no .txt
                                     Aresta a = new Aresta(v1, v2, Double.parseDouble(separadorAresta2[2]), bidirecional, separadorAresta2[4]);
                                     listaGravaveis.add(a);
@@ -115,6 +124,11 @@ public class OperadorArquivos {
 
                             String[] separadorIndividuo = str.split(":");
                             String[] separadorIndividuo2 = separadorIndividuo[1].split(",");
+
+                            for (int i = 0; i < separadorIndividuo2.length; i++) {
+                                separadorIndividuo2[i] = separadorIndividuo2[i].trim();
+                            }
+
                             Vertice vIndividuo = null;
 
                             for (Vertice verticeI : verticesTemp) {
@@ -141,10 +155,8 @@ public class OperadorArquivos {
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(ex.getMessage());
-//            Logger.getLogger(OperadorArquivos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(ex.getMessage());
-//            Logger.getLogger(OperadorArquivos.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         verticesTemp = null;
