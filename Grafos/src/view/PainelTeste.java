@@ -4,24 +4,34 @@ import java.awt.Graphics;
 import java.util.List;
 import model.Aresta;
 import model.Individuo;
+import model.Mapa;
 import model.Vertice;
 
 public class PainelTeste extends javax.swing.JPanel {
     
+    private Mapa mapa;
     private List<Individuo> listaIndividuos;
     private List<Aresta> listaArestas;
     private List<Vertice> listaVertices;
 
-    public PainelTeste( List<Individuo> listaIndividuos, List<Vertice> listaVertices, List<Aresta> listaArestas ) {
+    public PainelTeste( Mapa mapa ) {
         initComponents();
-        this.listaIndividuos = listaIndividuos;
-        this.listaArestas = listaArestas;
-        this.listaVertices = listaVertices;
+        this.mapa = mapa;
+        this.listaIndividuos = mapa.getIndividuos();
+        this.listaArestas = mapa.getArestas();
+        this.listaVertices = mapa.getVertices();
+    }
+    
+    private void verificaListas(){
+        listaIndividuos = mapa.getIndividuos();
+        listaArestas = mapa.getArestas();
+        listaVertices = mapa.getVertices();
     }
     
     @Override
     public void paintComponent( Graphics g ){
         super.paintComponent( g );
+        verificaListas();
         for (Aresta a : listaArestas){
             a.desenhar(g);
         }

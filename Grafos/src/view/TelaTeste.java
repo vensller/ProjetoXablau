@@ -18,14 +18,14 @@ public class TelaTeste extends javax.swing.JFrame {
     
     private PainelTeste desenhar;
 
-    public TelaTeste(  List<Individuo> listaIndividuos, List<Vertice> listaVertices, List<Aresta> listaArestas ) {
+    public TelaTeste(  Mapa mapa ) {
         initComponents();
         this.setLocationRelativeTo( null );
         this.setSize(600, 600);
         
 //        JButton botao = new JButton();
         
-        desenhar = new PainelTeste( listaIndividuos, listaVertices, listaArestas );
+        desenhar = new PainelTeste( mapa );
         desenhar.setSize( 500, 500 );
         
         this.add( desenhar );
@@ -129,7 +129,7 @@ public class TelaTeste extends javax.swing.JFrame {
         i1.setCaminho( d.retornaMenorCaminho( i1.getLocalizacao(), solucao) );
         i2.setCaminho( d.retornaMenorCaminho( i2.getLocalizacao(), solucao) );
         
-        TelaTeste tt = new TelaTeste( mp.getIndividuos(), mp.getVertices(), mp.getArestas() );
+        TelaTeste tt = new TelaTeste( mp );
         tt.setVisible(true);
         
     }
