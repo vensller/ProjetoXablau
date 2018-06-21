@@ -8,6 +8,7 @@ import model.Vertice;
 public class CalculosCurva {
 
     private final String nome;
+    private Aresta aresta;
 
     private double a;
     private double b;
@@ -31,6 +32,7 @@ public class CalculosCurva {
     private final double d;
 
     public CalculosCurva(Aresta aresta) {
+        this.aresta = aresta;
         nome = aresta.getNome();
         xA = aresta.getOrigem().getValorX();
         xB = aresta.getDestino().getValorX();
@@ -88,7 +90,7 @@ public class CalculosCurva {
             
             teta += Math.toDegrees( Math.atan( m ) );
             
-            if( xA > xB ){
+            if( yA > yB ){                
                 teta += 180;
             }
             

@@ -70,10 +70,30 @@ public class Dijkstra {
         int verticeDestino = mapa.getVertices().indexOf(destino);        
         caminhoVert.add(verticeDestino);        
         adicionaCaminhoRecursivo(caminhoVert, verticeDestino, mapa.getVertices().indexOf(origem));
+        Vertice origemAtual = origem;
         for (int i = caminhoVert.size() - 1; i > 0; i --){
-            No novoNo = new No(retornaAresta(mapa.getVertices().get(caminhoVert.get(i)), mapa.getVertices().get(caminhoVert.get(i - 1))), null);
-            if (novoNo.getAresta() != null)
+            Aresta a = retornaAresta(mapa.getVertices().get(caminhoVert.get(i)), mapa.getVertices().get(caminhoVert.get(i - 1)));
+            
+            if (a != null){
+                boolean invertido = false;       
+                boolean origemPosicaoCorreta = true;
+                
+                if (a.getPontos().size() > 0){
+                    if ((a.getPontos().get(0).getValorX() != a.getOrigem().getValorX()) || (a.getPontos().get(0).getValorY() != a.getOrigem().getValorY())){
+                        origemPosicaoCorreta = false;
+                    }
+                }
+                
+                if ((a.getOrigem() != origemAtual)&&(origemPosicaoCorreta)){
+                    invertido = true;
+                }
+                
+                if (a.getOrigem() == origemAtual) origemAtual = a.getDestino();
+                else origemAtual = a.getOrigem();                 
+
+                No novoNo = new No(a, null, invertido);            
                 caminho.Adicionar(novoNo);
+            }
         }        
     }    
     
@@ -123,10 +143,8 @@ public class Dijkstra {
     private Aresta retornaAresta(Vertice origem, Vertice destino){
         for (Aresta aresta : mapa.getArestas()){
             if ((aresta.getOrigem().equals(origem) && aresta.getDestino().equals(destino))
-             || (aresta.getDestino().equals(origem) && aresta.getOrigem().equals(destino))){
-                if (aresta.getOrigem().equals(origem))
-                    return aresta;
-                else return new Aresta(origem, destino, aresta.getComprimento(), aresta.isBidirecional(), aresta.getNome());
+             || (aresta.getDestino().equals(origem) && aresta.getOrigem().equals(destino))){               
+                return aresta;                
             }
         }
         return null;

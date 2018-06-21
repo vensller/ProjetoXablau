@@ -41,8 +41,10 @@ public class ListaCaminho {
         CalculosCurva cc;
         
         while( aux != null ){
-            cc = new CalculosCurva( aux.getAresta() );
-            listaVertices.addAll( cc.getPontos() );
+            if (aux.isInvertido())
+                listaVertices.addAll(aux.getAresta().getPontosInvertidos());
+            else listaVertices.addAll(aux.getAresta().getPontos());
+            
             aux = aux.getProximo();
         }
         

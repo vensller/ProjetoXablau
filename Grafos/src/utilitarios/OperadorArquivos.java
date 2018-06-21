@@ -161,6 +161,7 @@ public class OperadorArquivos {
         } catch (IOException ex) {
             Logger.getLogger(ex.getMessage());
         } catch(Exception e){
+            e.printStackTrace();
             throw new Exception("Alguns problemas foram detectados na leitura dos dados do arquivo!");
         }
 

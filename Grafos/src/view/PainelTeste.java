@@ -31,7 +31,7 @@ public class PainelTeste extends javax.swing.JPanel {
     @Override
     public void paintComponent( Graphics g ){
         super.paintComponent( g );
-        verificaListas();
+        verificaListas();        
         for (Aresta a : listaArestas){
             a.desenhar(g);
         }

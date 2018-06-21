@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.QuadCurve2D;
+import java.util.ArrayList;
+import java.util.List;
 import utilitarios.CalculosCurva;
 
 public class Aresta implements Desenhavel {
@@ -14,6 +16,8 @@ public class Aresta implements Desenhavel {
     private double comprimento;
     private double excentricidade;
     private boolean bidirecional;
+    private List<Vertice> pontos;
+    private List<Vertice> pontosInvertidos;
     
     private final double RAIO = 3;
 
@@ -27,8 +31,7 @@ public class Aresta implements Desenhavel {
     }
 
     @Override
-    public void desenhar(java.awt.Graphics g) {
-        CalculosCurva cc = new CalculosCurva( this );
+    public void desenhar(java.awt.Graphics g) {        
         Graphics2D g2 = (Graphics2D) g;
         QuadCurve2D q = new QuadCurve2D.Float();
         
@@ -39,14 +42,12 @@ public class Aresta implements Desenhavel {
 //        maximoX = cc.getValorXmaximo();
 //        maximoY = cc.getValorYMaximo();
 //        destinoX = destino.getValorX();
-//        destinoY = destino.getValorY();
+//        destinoY = destino.getValorY();          
         
-        double[] pontos = cc.getCoordenadasPontos();
-        
-        for( int i = 0; i < pontos.length; i += 2){
+        for( int i = 0; i < pontos.size(); i ++){
             Ellipse2D.Double circle = new Ellipse2D.Double(
-            pontos[i]-RAIO/2, pontos[i+1]-RAIO/2, RAIO, RAIO);
-            g2.setColor(Color.GRAY);
+            pontos.get(i).getValorX()-RAIO/2, pontos.get(i).getValorY()-RAIO/2, RAIO, RAIO);
+            g2.setColor(Color.GRAY);            
             g2.fill(circle);
         }
         
@@ -62,10 +63,8 @@ public class Aresta implements Desenhavel {
     }
 
     public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {
-        if( possuiComprimentoPossivel( vertice01, vertice02, comprimento ) ){
-//            throw new RuntimeException("Comprimento para a aresta <" 
-//                + (!nome.equals("")?nome:"nomeNulo") + "> é menor que a distância em l"
-//                + "inha reta dos pontos de origem e destino");
+        if( possuiComprimentoPossivel( vertice01, vertice02, comprimento ) > comprimento ){
+            comprimento = possuiComprimentoPossivel( vertice01, vertice02, comprimento );
         }
         
         this.origem = vertice01;
@@ -73,6 +72,24 @@ public class Aresta implements Desenhavel {
         this.comprimento = comprimento;
         this.bidirecional = bidirecional;
         this.nome = nome;
+        CalculosCurva cc = new CalculosCurva(this);
+        pontos = cc.getPontos();
+        calcularPontosInvertidos();
+    }
+    
+    public void calcularPontosInvertidos(){
+        pontosInvertidos = new ArrayList<>();
+        for (int i = pontos.size() - 1; i >= 0; i--){
+            pontosInvertidos.add(pontos.get(i));
+        }
+        
+        if (pontosInvertidos.size() > 0){
+            if ((pontosInvertidos.get(0).getValorX() == origem.getValorX()) && (pontosInvertidos.get(0).getValorY() == origem.getValorY())){
+                List<Vertice> controle = pontos;
+                pontos = pontosInvertidos;
+                pontosInvertidos = controle;
+            }
+        }        
     }
 
     public Vertice getOrigem() {
@@ -138,12 +155,28 @@ public class Aresta implements Desenhavel {
         return false;
     }
 
-    private boolean possuiComprimentoPossivel(Vertice vertice01, Vertice vertice02, double comprimento) {
+    private double possuiComprimentoPossivel(Vertice vertice01, Vertice vertice02, double comprimento) {
         double xA = vertice01.getValorX();
         double yA = vertice01.getValorY();
         double xB = vertice02.getValorX();
         double yB = vertice02.getValorY();
-        return comprimento < ( Math.sqrt( Math.pow(xA - xB, 2) + Math.pow(yA - yB, 2) ) );
+        return ( Math.sqrt( Math.pow(xA - xB, 2) + Math.pow(yA - yB, 2) ) );
     }
 
+    public List<Vertice> getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(List<Vertice> pontos) {
+        this.pontos = pontos;
+    }
+
+    public List<Vertice> getPontosInvertidos() {
+        return pontosInvertidos;
+    }
+
+    public void setPontosInvertidos(List<Vertice> pontosInvertidos) {
+        this.pontosInvertidos = pontosInvertidos;
+    }
+    
 }

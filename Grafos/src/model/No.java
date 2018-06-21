@@ -8,10 +8,12 @@ public class No {
     
     private Aresta aresta;
     private No proximo;
+    private boolean invertido;
 
-    public No(Aresta aresta, No proximo) {
+    public No(Aresta aresta, No proximo, boolean invertido) {
         this.aresta = aresta;
         this.proximo = proximo;
+        this.invertido = invertido;
     }
 
     public No(){
@@ -33,6 +35,14 @@ public class No {
 
     public void setProximo(No proximo) {
         this.proximo = proximo;
+    }
+
+    public boolean isInvertido() {
+        return invertido;
+    }
+
+    public void setInvertido(boolean invertido) {
+        this.invertido = invertido;
     }
    
 }
