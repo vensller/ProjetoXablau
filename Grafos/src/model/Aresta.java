@@ -84,11 +84,26 @@ public class Aresta implements Desenhavel {
         }
         
         if (pontosInvertidos.size() > 0){
-            if ((pontosInvertidos.get(0).getValorX() == origem.getValorX()) && (pontosInvertidos.get(0).getValorY() == origem.getValorY())){
+            boolean invertido = false;
+            if ((pontosInvertidos.get(0).getValorX() == origem.getValorX()) && (pontosInvertidos.get(0).getValorY() == origem.getValorY()))
+                invertido = true;
+
+            if ((pontosInvertidos.get(0).getValorX() - origem.getValorX() < 1) && (pontosInvertidos.get(0).getValorX() - origem.getValorX() > - 1)){              
+                if ((pontosInvertidos.get(0).getValorY() - origem.getValorY() < 1) && (pontosInvertidos.get(0).getValorY() - origem.getValorY() > - 1))
+                    invertido = true;
+            }
+            
+            if ((pontosInvertidos.get(0).getValorY() - origem.getValorY() < 1) && (pontosInvertidos.get(0).getValorY() - origem.getValorY() > - 1)){
+                if ((pontosInvertidos.get(0).getValorX() - origem.getValorX() < 1) && (pontosInvertidos.get(0).getValorX() - origem.getValorX() > - 1))
+                    invertido = true;
+            }
+            
+            if (invertido){
                 List<Vertice> controle = pontos;
                 pontos = pontosInvertidos;
                 pontosInvertidos = controle;
             }
+              
         }        
     }
 
