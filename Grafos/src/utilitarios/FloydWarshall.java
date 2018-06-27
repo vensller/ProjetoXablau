@@ -62,7 +62,7 @@ public class FloydWarshall {
                     if( aux != -1 ){
                         matriz[ i ][ j ] = aux;
                     }else{
-                        matriz[ i ][ j ] = Double.MIN_VALUE;
+                        matriz[ i ][ j ] = Double.MAX_VALUE;
                     }
                 }
             }
