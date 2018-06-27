@@ -188,7 +188,7 @@ public class CalculosCurva {
         valores[0] = x * cos - y * sen + xO;
         valores[1] = x * sen + y * cos + yO;
 //        valores[1] = (x * sen + y * cos + yO) * -1;
-//        System.out.println( (valores[0]) + "," + (valores[1]) );
+        System.out.println( (valores[0]) + "," + (valores[1]) );
     }
 
 }
