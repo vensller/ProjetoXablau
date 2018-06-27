@@ -65,6 +65,11 @@ public class Aresta implements Desenhavel {
     public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {
         if( possuiComprimentoPossivel( vertice01, vertice02, comprimento ) > comprimento ){
             comprimento = possuiComprimentoPossivel( vertice01, vertice02, comprimento );
+            System.err.println("Valor para comprimento da aresta {" + (nome.isEmpty()?"null":nome) + 
+                "} com origem {" + (vertice01.getNome().isEmpty()?"null":vertice01.getNome()) + 
+                "} e destino {" + (vertice02.getNome().isEmpty()?"null":vertice02.getNome()) +
+                "} passado como argumento em arquivo é menor que a distância em linha reta," + 
+                "Assim sera considerado como comprimento o valor entre a origem e o destino");
         }
         
         this.origem = vertice01;
