@@ -63,15 +63,21 @@ public class Aresta implements Desenhavel {
     }
 
     public Aresta(Vertice vertice01, Vertice vertice02, double comprimento, boolean bidirecional, String nome) {
-        if( possuiComprimentoPossivel( vertice01, vertice02, comprimento ) > comprimento ){
-            comprimento = possuiComprimentoPossivel( vertice01, vertice02, comprimento );
-        }
-        
         this.origem = vertice01;
         this.destino = vertice02;
-        this.comprimento = comprimento;
         this.bidirecional = bidirecional;
         this.nome = nome;
+        
+        if( calcularComprimentoLinhaReta( vertice01, vertice02, comprimento ) > comprimento ){
+            this.comprimento = calcularComprimentoLinhaReta( vertice01, vertice02, comprimento );
+            System.err.println("Valor para comprimento da aresta {" + (nome.isEmpty()?"null":nome) + 
+                "} com origem {" + (origem.getNome().isEmpty()?"null":origem.getNome()) + 
+                "} e destino {" + (destino.getNome().isEmpty()?"null":destino.getNome()) +
+                "} passado como argumento em arquivo é menor que a distância em linha reta," + 
+                "Assim sera considerado como comprimento o valor entre a origem e o destino");
+        }
+        double aux = calcularComprimentoLinhaReta(vertice01, vertice02, comprimento);
+        
         CalculosCurva cc = new CalculosCurva(this);
         pontos = cc.getPontos();
         calcularPontosInvertidos();
@@ -170,7 +176,7 @@ public class Aresta implements Desenhavel {
         return false;
     }
 
-    private double possuiComprimentoPossivel(Vertice vertice01, Vertice vertice02, double comprimento) {
+    private double calcularComprimentoLinhaReta(Vertice vertice01, Vertice vertice02, double comprimento) {
         double xA = vertice01.getValorX();
         double yA = vertice01.getValorY();
         double xB = vertice02.getValorX();
